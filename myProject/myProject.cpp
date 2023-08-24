@@ -1,0 +1,86 @@
+﻿#include <iostream>
+#include "../inc/loadBackgroud.h"
+#include "../inc/mouse.h"
+#include "../inc/operation.h"
+using namespace std;
+struct resource res;
+int main()
+{
+	
+	initgraph(800, 480, EX_SHOWCONSOLE);
+	loadingBK(&res);
+again:
+	putimage(0, 0, res.resourceBK + 0);
+
+	while (true) {
+		ExMessage msg = { 0 };
+		peekmessage(&msg, EX_MOUSE);//获取消息 鼠标
+
+		switch (msg.message)
+		{
+		case WM_LBUTTONDOWN:
+			if (inArea(msg.x, msg.y, 330, 100, 115, 25))
+			{
+				cleardevice();
+				putimage(0, 0, res.resourceBK + 1);
+				while(true)
+				{
+					peekmessage(&msg, EX_MOUSE);//获取消息 鼠标
+					describe(msg.x,msg.y);
+					if (msg.message== WM_LBUTTONDOWN && inArea(msg.x, msg.y, 70, 110, 160, 190))
+					{
+						cout << "小火猴" << endl;
+						cleardevice();
+						putimage(0, 0, res.resourceBK + 2);
+						int ret = myOperation();
+						if (ret == 0)
+						{
+							goto again;
+						}
+						break;
+					}
+					if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 310, 110, 160, 190))
+					{
+						cout << "伊娃" << endl;
+						cleardevice();
+						putimage(0, 0, res.resourceBK + 2);
+						int ret = myOperation();
+						if (ret == 0)
+						{
+							goto again;
+						}
+						break;
+					}
+					if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 550, 110, 160, 190))
+					{
+						cout << "布布种子" << endl;
+						cleardevice();
+						putimage(0, 0, res.resourceBK + 2);
+						int ret =myOperation();
+						if (ret == 0)
+						{
+							goto again;
+						}
+						break;
+					}
+					cout << "鼠标左键按下2pos(" << msg.x << "," << msg.y << ")" << endl;
+				}
+			}
+			else if (inArea(msg.x, msg.y, 330, 190, 115, 25))
+			{
+				cout << "读取存档" << endl;
+			}
+			else if (inArea(msg.x, msg.y, 330, 270, 115, 25))
+			{
+				cout << "退出程序" << endl;
+				exit(0);
+			}
+			cout << "鼠标左键按下1pos(" << msg.x << "," << msg.y << ")" << endl;
+			break;
+		default:
+			break;
+		}
+	}
+
+}
+
