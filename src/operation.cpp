@@ -122,9 +122,9 @@ void againstChoose()
 			cout << "开始对战" << endl;
 			cleardevice();
 			putimage(0, 0, &res.against);
-//			SmallMonkey smallmonkey;
-//			Pipi pipi;
-//			against(smallmonkey, pipi);
+			SmallMonkey smallmonkey;
+			Pipi pipi;
+			against(smallmonkey, pipi);
 		}
 	}
 }
