@@ -7,7 +7,7 @@ struct resource res;
 int main()
 {
 	
-	initgraph(800, 480, EX_SHOWCONSOLE);
+	initgraph(800, 480, EX_SHOWCONSOLE| EX_NOCLOSE| EX_NOMINIMIZE| EX_DBLCLKS);
 	loadingBK(&res);
 again:
 	putimage(0, 0, res.resourceBK + 0);
@@ -21,6 +21,8 @@ again:
 		case WM_LBUTTONDOWN:
 			if (inArea(msg.x, msg.y, 330, 100, 115, 25))
 			{
+				msg.x = 0;
+				msg.y = 0;
 				cleardevice();
 				putimage(0, 0, res.resourceBK + 1);
 				while(true)
@@ -30,8 +32,6 @@ again:
 					if (msg.message== WM_LBUTTONDOWN && inArea(msg.x, msg.y, 70, 110, 160, 190))
 					{
 						cout << "小火猴" << endl;
-						cleardevice();
-						putimage(0, 0, res.resourceBK + 2);
 						int ret = myOperation();
 						if (ret == 0)
 						{
@@ -42,8 +42,6 @@ again:
 					if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 310, 110, 160, 190))
 					{
 						cout << "伊娃" << endl;
-						cleardevice();
-						putimage(0, 0, res.resourceBK + 2);
 						int ret = myOperation();
 						if (ret == 0)
 						{
@@ -54,8 +52,6 @@ again:
 					if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 550, 110, 160, 190))
 					{
 						cout << "布布种子" << endl;
-						cleardevice();
-						putimage(0, 0, res.resourceBK + 2);
 						int ret =myOperation();
 						if (ret == 0)
 						{

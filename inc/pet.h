@@ -52,16 +52,10 @@ public:
 	int getSpeed();//速度
 
 	//show
-	void showAll()
-	{
-		cout << "精灵名称 : " << this->_name << endl;
-		cout << "等级   : " << this->_grade << endl;
-		cout << "生命值 : " << this->_curHp << "/" << this->_fullHp << endl;
-		cout << "攻击力 : " << this->_aggressivity << endl;
-		cout << "防御力 : " << this->_defense << endl;
-		cout << "速度值 : " << this->_speed << endl;
-		cout << "经验值 : " << this->_curExpValue << "/" << this->_fullExpValue << endl;
-	}
+	void showAll();
+	//empty
+	int isEmptyHp();
+	int isEmptyMp();
 
 };
 

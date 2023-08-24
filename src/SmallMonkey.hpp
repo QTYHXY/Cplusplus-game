@@ -38,10 +38,10 @@ void SmallMonkey::upGrade()
 	{
 		cout << "小火猴升级成功" << endl;
 		this->_fullHp += 4;
-		this->_fullHp = this->_fullHp;
+		this->_curHp = this->_fullHp;
 
 		this->_fullMp += 4;
-		this->_fullMp = this->_fullMp;
+		this->_curMp = this->_fullMp;
 
 		this->_aggressivity += 2;
 		this->_defense += 2;

@@ -9,10 +9,13 @@
 //#include "../src/SmallMonkey.hpp"
 int myOperation();
 void fairyHospital();
-void mapExploration();
+int mapExploration();
 void petBackpack();
 void petStore();
 void propBackpack();
-void againstChoose();
-void against(const Pokemon& my, const Pokemon& other);
+int againstChoose();
+template <typename T1, typename T2>
+int against(T1 &my, T2 &other);
+template <typename T1, typename T2>
+void showInfo(T1& my, T2& other);
 #endif // !_OPERTION_H_

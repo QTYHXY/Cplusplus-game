@@ -4,8 +4,8 @@ Pokemon::Pokemon()
 {
 
 }
-Pokemon::Pokemon(string name, int fullHp, int curHp, int aggressivity, int defense, int fullMp, int curMp, int fullExpValue, int curExpValue, int grade,int speed)
-	:_name(name),_fullHp(fullHp),_curHp(curHp),_aggressivity(aggressivity),_defense(defense),_fullMp(fullMp),_curMp(curMp),_fullExpValue(fullExpValue),_curExpValue(curExpValue),_grade(grade),_speed(speed)
+Pokemon::Pokemon(string name, int fullHp, int curHp, int aggressivity, int defense, int fullMp, int curMp, int fullExpValue, int curExpValue, int grade, int speed)
+	:_name(name), _fullHp(fullHp), _curHp(curHp), _aggressivity(aggressivity), _defense(defense), _fullMp(fullMp), _curMp(curMp), _fullExpValue(fullExpValue), _curExpValue(curExpValue), _grade(grade), _speed(speed)
 {
 
 }
@@ -96,3 +96,40 @@ int Pokemon::getGrade()//等级
 {
 	return _grade;
 }
+
+void Pokemon::showAll()
+{
+	cout << "精灵名称 : " << this->_name << endl;
+	cout << "等级   : " << this->_grade << endl;
+	cout << "生命值 : " << this->_curHp << "/" << this->_fullHp << endl;
+	cout << "攻击力 : " << this->_aggressivity << endl;
+	cout << "防御力 : " << this->_defense << endl;
+	cout << "速度值 : " << this->_speed << endl;
+	cout << "经验值 : " << this->_curExpValue << "/" << this->_fullExpValue << endl;
+}
+
+int Pokemon::isEmptyHp()
+{
+	if (this->_curHp == 0)
+	{
+		cout << this->_name << "已经战死" << endl;
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+int Pokemon::isEmptyMp()
+{
+	if (this->_curMp == 0)
+	{
+		cout << this->_name << "已经没有魔力值" << endl;
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
