@@ -2,7 +2,10 @@
 #include "../inc/mouse.h"
 #include "Pipi.hpp"
 #include "SmallMonkey.hpp"
+#include "Eva.hpp"
+#include "BritneySeeds.hpp"
 #include <iostream>
+#include <windows.h>
 extern "C" {
 #include <string.h>
 }
@@ -10,10 +13,11 @@ using namespace std;
 
 extern struct resource res;
 SmallMonkey smallmonkey;
-Pipi pipi;
-int myOperation()
-{
+Eva eva;
+BritneySeeds britneyseeds;
 
+int myOperation(int num)
+{
 map:
 	ExMessage msg = { 0 };
 	cleardevice();
@@ -27,26 +31,84 @@ map:
 		{
 			if (inArea(msg.x, msg.y, 90, 95, 115, 130))
 			{
-				cleardevice();
-				putimage(0, 0, res.resourceBK + 5);
 				cout << "打开宠物背包" << endl;
+				int ret;
+				if (num == 1)
+				{
+					ret = petBackpack(smallmonkey);
+				}
+				else if (num == 2)
+				{
+					ret = petBackpack(eva);
+				}
+				else if (num == 3)
+				{
+					ret = petBackpack(britneyseeds);
+				}
+
+				if (ret == 2)
+				{
+					goto map;
+				}
 			}
 			else if (inArea(msg.x, msg.y, 320, 95, 115, 130))
 			{
-				cleardevice();
-				putimage(0, 0, res.resourceBK + 3);
+				int ret;
+				if (num == 1)
+				{
+					ret = mypropBackpack(smallmonkey);
+				}
+				else if (num == 2)
+				{
+					ret = mypropBackpack(eva);
+				}
+				else if (num == 3)
+				{
+					ret = mypropBackpack(britneyseeds);
+				}
+				if (ret == 2)
+				{
+					goto map;
+				}
 				cout << "打开道具背包" << endl;
 			}
 			else if (inArea(msg.x, msg.y, 560, 95, 115, 130))
 			{
-				cleardevice();
-				putimage(0, 0, res.resourceBK + 4);
+
+				int ret;
+				if (num == 1)
+				{
+					ret = petStore(smallmonkey);
+				}
+				else if (num == 2)
+				{
+					ret = petStore(eva);
+				}
+				else if (num == 3)
+				{
+					ret = petStore(britneyseeds);
+				}
+				if (ret == 2)
+				{
+					goto map;
+				}
 				cout << "打开宠物商店" << endl;
 			}
 			else if (inArea(msg.x, msg.y, 90, 280, 115, 130))
 			{
-
-				int ret = mapExploration();
+				int ret;
+				if (num == 1)
+				{
+					ret = mapExploration(smallmonkey);
+				}
+				else if (num == 2)
+				{
+					ret = mapExploration(eva);
+				}
+				else if (num == 3)
+				{
+					ret = mapExploration(britneyseeds);
+				}
 				if (ret == 2)
 				{
 					goto map;
@@ -55,8 +117,24 @@ map:
 			}
 			else if (inArea(msg.x, msg.y, 320, 280, 115, 130))
 			{
-				cleardevice();
-				putimage(0, 0, res.resourceBK + 7);
+
+				int ret;
+				if (num == 1)
+				{
+					ret = fairyHospital(smallmonkey);
+				}
+				else if (num == 2)
+				{
+					ret = fairyHospital(eva);
+				}
+				else if (num == 3)
+				{
+					ret = fairyHospital(britneyseeds);
+				}
+				if (ret == 2)
+				{
+					goto map;
+				}
 				cout << "精灵医院" << endl;
 			}
 			else if (inArea(msg.x, msg.y, 560, 280, 115, 130))
@@ -71,11 +149,25 @@ map:
 		//cout << "operation pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
-void fairyHospital()
+template <class T1>
+int fairyHospital(T1& my)
 {
-
+	cleardevice();
+	putimage(0, 0, res.resourceBK + 7);
+	ExMessage msg = { 0 };
+	while (true)
+	{
+		peekmessage(&msg, EX_MOUSE);//获取消息
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		{
+			cout << "退出" << endl;
+			return 2;
+		}
+		//cout << "fairyHospital  pos(" << msg.x << "," << msg.y << ")" << endl;
+	}
 }
-int mapExploration()
+template <class T1>
+int mapExploration(T1& my)
 {
 mapchoose:
 	ExMessage msg = { 0 };
@@ -89,7 +181,7 @@ mapchoose:
 		{
 			msg.message = WM_LBUTTONUP;
 			cout << "云霄星" << endl;
-			int ret = againstChoose();
+			int ret = againstChooseMap1(my);
 			if (ret == 2)
 			{
 				goto mapchoose;
@@ -101,14 +193,14 @@ mapchoose:
 			cout << "海洋星" << endl;
 			cleardevice();
 			putimage(0, 0, res.map + 1);
-			againstChoose();
+			//againstChoose(my);
 		}
 		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 590, 115, 160, 150))
 		{
 			cout << "雷神星" << endl;
 			cleardevice();
 			putimage(0, 0, res.map + 2);
-			againstChoose();
+			//againstChoose(my);
 		}
 		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
@@ -118,21 +210,61 @@ mapchoose:
 		//cout << "map  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
-void petBackpack()
+template <class T1>
+int petBackpack(T1& my)
 {
-
+	cleardevice();
+	putimage(0, 0, res.resourceBK + 5);
+	ExMessage msg = { 0 };
+	while (true)
+	{
+		peekmessage(&msg, EX_MOUSE);//获取消息
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		{
+			cout << "退出" << endl;
+			return 2;
+		}
+		//cout << "petBackpack  pos(" << msg.x << "," << msg.y << ")" << endl;
+	}
 }
-void petStore()
+template <class T1>
+int petStore(T1& my)
 {
-
+	cleardevice();
+	putimage(0, 0, res.resourceBK + 4);
+	ExMessage msg = { 0 };
+	while (true)
+	{
+		peekmessage(&msg, EX_MOUSE);//获取消息
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		{
+			cout << "退出" << endl;
+			return 2;
+		}
+		//cout << "petStore  pos(" << msg.x << "," << msg.y << ")" << endl;
+	}
 }
-void propBackpack()
+template <class T1>
+int mypropBackpack(T1& my)
 {
-
+	cleardevice();
+	putimage(0, 0, res.resourceBK + 3);
+	ExMessage msg = { 0 };
+	while (true)
+	{
+		peekmessage(&msg, EX_MOUSE);//获取消息
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		{
+			cout << "退出" << endl;
+			return 2;
+		}
+		//cout << "mypropBackpack  pos(" << msg.x << "," << msg.y << ")" << endl;
+	}
 }
 
 
-int againstChoose()
+template <class T1>
+int againstChooseMap1(T1& my)
 {
 choose:
 	cleardevice();
@@ -144,8 +276,65 @@ choose:
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 140, 110, 125, 110))
 		{
 			cout << "开始对战" << endl;
-			//cleardevice();
-			//putimage(0, 0, &res.against);
+			Pipi pipi;
+			if (against(my, pipi))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		{
+			cout << "退出" << endl;
+			return 2;
+		}
+		//cout << "againstChoose  pos(" << msg.x << "," << msg.y << ")" << endl;
+	}
+}
+
+template <class T1>
+int againstChooseMap2(T1& my)
+{
+choose:
+	cleardevice();
+	putimage(0, 0, res.map + 3);
+	ExMessage msg = { 0 };
+	while (true)
+	{
+		peekmessage(&msg, EX_MOUSE);//获取消息 
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 140, 110, 125, 110))
+		{
+			cout << "开始对战" << endl;
+			Pipi pipi;
+			if (against(smallmonkey, pipi))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		{
+			cout << "退出" << endl;
+			return 2;
+		}
+		//cout << "againstChoose  pos(" << msg.x << "," << msg.y << ")" << endl;
+	}
+}
+
+template <class T1>
+int againstChooseMap3(T1& my)
+{
+choose:
+	cleardevice();
+	putimage(0, 0, res.map + 3);
+	ExMessage msg = { 0 };
+	while (true)
+	{
+		peekmessage(&msg, EX_MOUSE);//获取消息 
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 140, 110, 125, 110))
+		{
+			cout << "开始对战" << endl;
+			Pipi pipi;
 			if (against(smallmonkey, pipi))
 			{
 				cout << "战斗结束" << endl;
@@ -206,7 +395,7 @@ int against(T1& my, T2& other)
 			BeginBatchDraw();
 			cleardevice();
 			putimage(0, 0, &res.against);
-			againstInfo(my, other, 300, 100,1);
+			againstInfo(my, other, 300, 100, 1);
 			showInfo(my, 10, 100);
 			showInfo(other, 690, 10);
 			EndBatchDraw();
@@ -323,7 +512,7 @@ void showInfo(T1& obj, int x, int y, string str)
 	//设置背景模式
 	setbkmode(TRANSPARENT);
 
-	char petName[20];
+	char petName[50];
 
 	string tmpStr = obj._name;
 	char* tmpChar = (char*)tmpStr.data();
@@ -359,7 +548,7 @@ void showInfo(T1& obj, int x, int y, string str)
 template <typename T1, typename T2>
 void againstInfo(T1& my, T2& other, int x, int y, int option)
 {
-	char tmpStr[50];
+	char tmpStr[60];
 	//我的名字
 	string tmpMyStr = my._name;
 	char* tmpMyChar = (char*)tmpMyStr.data();
@@ -370,10 +559,10 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 	if (option == 1)
 	{
 		memset(tmpStr, 0, sizeof(tmpStr));
-		sprintf_s(tmpStr, "%s对%s使用了一技能", tmpMyChar,tmpOtherChar);
+		sprintf_s(tmpStr, "%s对%s使用了一技能", tmpMyChar, tmpOtherChar);
 		outtextxy(x, y, tmpStr);
 		sprintf_s(tmpStr, "%s对%s使用了一技能", tmpOtherChar, tmpMyChar);
-		outtextxy(x, y+15, tmpStr);
+		outtextxy(x, y + 15, tmpStr);
 	}
 	else if (option == 2)
 	{
@@ -381,7 +570,7 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		sprintf_s(tmpStr, "%s对%s使用了二技能", tmpMyChar, tmpOtherChar);
 		outtextxy(x, y, tmpStr);
 		sprintf_s(tmpStr, "%s对%s使用了二技能", tmpOtherChar, tmpMyChar);
-		outtextxy(x, y+15, tmpStr);
+		outtextxy(x, y + 15, tmpStr);
 	}
 	else if (option == 3)
 	{
@@ -389,7 +578,7 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		sprintf_s(tmpStr, "%s对%s使用了三技能", tmpMyChar, tmpOtherChar);
 		outtextxy(x, y, tmpStr);
 		sprintf_s(tmpStr, "%s对%s使用了三技能", tmpOtherChar, tmpMyChar);
-		outtextxy(x, y+15, tmpStr);
+		outtextxy(x, y + 15, tmpStr);
 	}
 	else if (option == 4)
 	{
@@ -397,6 +586,6 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		sprintf_s(tmpStr, "%s对%s使用了四技能", tmpMyChar, tmpOtherChar);
 		outtextxy(x, y, tmpStr);
 		sprintf_s(tmpStr, "%s对%s使用了四技能", tmpOtherChar, tmpMyChar);
-		outtextxy(x, y+15, tmpStr);
+		outtextxy(x, y + 15, tmpStr);
 	}
 }

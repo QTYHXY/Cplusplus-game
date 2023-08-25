@@ -25,10 +25,14 @@ public:
 
 	}
 	void upGrade();
-	int firstSkill(const Pokemon& other);
-	int SecondSkill(const Pokemon& other);
-	int ThirdSkill(const Pokemon& other);
-	int fourthSkill(const Pokemon& other);
+	template <class T1>
+	int firstSkill(const T1& other);
+	template <class T1>
+	int SecondSkill(const T1& other);
+	template <class T1>
+	int ThirdSkill(const T1& other);
+	template <class T1>
+	int fourthSkill(const T1& other);
 };
 
 
@@ -56,37 +60,43 @@ void SmallMonkey::upGrade()
 		cout << "已经满级，无法升级" << endl;
 	}
 }
-
-int SmallMonkey::firstSkill(const Pokemon& other)
+template <class T1>
+int SmallMonkey::firstSkill(const T1& other)
 {
 	cout << "小火猴使用了爪" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
-int SmallMonkey::SecondSkill(const Pokemon& other)
+template <class T1>
+int SmallMonkey::SecondSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-	//{
-	//	return -1;
-	//}
+	if (this->_grade < 4)
+	{
+		cout << "4级开启" << endl;
+		return 0;
+	}
 	cout << "小火猴使用二技能" << endl;
 	return (this->_aggressivity * 2.5) / (other._defense * 1.2);
 
 }
-int SmallMonkey::ThirdSkill(const Pokemon& other)
+template <class T1>
+int SmallMonkey::ThirdSkill(const T1& other)
 {
-	//if (this->_grade < 8)
-	//{
-	//	return -1;
-	//}
+	if (this->_grade < 8)
+	{
+		cout << "8级开启" << endl;
+		return 0;
+	}
 	cout << "小火猴使用三技能" << endl;
 	return (this->_aggressivity * 3.5) / (other._defense * 1.5);
 }
-int SmallMonkey::fourthSkill(const Pokemon& other)
+template <class T1>
+int SmallMonkey::fourthSkill(const T1& other)
 {
-	//if (this->_grade < 12)
-	//{
-	//	return -1;
-	//}
+	if (this->_grade < 12)
+	{
+		cout << "12级开启" << endl;
+		return 0;
+	}
 	cout << "小火猴使用四技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 0.5);
 }

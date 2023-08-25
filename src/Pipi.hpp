@@ -24,10 +24,14 @@ public:
 		this->_speed = 7;
 	}
 	void upGrade();
-	int firstSkill(const Pokemon& other);
-	int SecondSkill(const Pokemon& other);
-	int ThirdSkill(const Pokemon& other);
-	int fourthSkill(const Pokemon& other);
+	template <class T1>
+	int firstSkill(const T1& other);
+	template <class T1>
+	int SecondSkill(const T1& other);
+	template <class T1>
+	int ThirdSkill(const T1& other);
+	template <class T1>
+	int fourthSkill(const T1& other);
 };
 
 void Pipi::upGrade()
@@ -54,39 +58,42 @@ void Pipi::upGrade()
 		cout << "已经满级，无法升级" << endl;
 	}
 }
-int Pipi::firstSkill(const Pokemon& other)
+template <class T1>
+int Pipi::firstSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-//{
-//	return -1;
-//}
 	cout << "皮皮使用了一技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
-int Pipi::SecondSkill(const Pokemon& other)
+template <class T1>
+int Pipi::SecondSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-//{
-//	return -1;
-//}
+	if (this->_grade < 4)
+	{
+		cout << "4级开启" << endl;
+		return 0;
+	}
 	cout << "皮皮使用了二技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
-int Pipi::ThirdSkill(const Pokemon& other)
+template <class T1>
+int Pipi::ThirdSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-//{
-//	return -1;
-//}
+	if (this->_grade < 8)
+	{
+		cout << "8级开启" << endl;
+		return 0;
+	}
 	cout << "皮皮使用了三技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
-int Pipi::fourthSkill(const Pokemon& other)
+template <class T1>
+int Pipi::fourthSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-//{
-//	return -1;
-//}
+	if (this->_grade < 12)
+	{
+		cout << "12级开启" << endl;
+		return 0;
+	}
 	cout << "皮皮使用了四技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }

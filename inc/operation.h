@@ -7,17 +7,33 @@
 #include "../inc/pet.h"
 //#include "../src/Pipi.hpp"
 //#include "../src/SmallMonkey.hpp"
-int myOperation();
-void fairyHospital();
-int mapExploration();
-void petBackpack();
-void petStore();
-void propBackpack();
-int againstChoose();
-template <typename T1, typename T2>
+
+int myOperation(int num);
+
+template <class T1>
+int fairyHospital(T1 &my);
+template <class T1>
+int mapExploration(T1& my);
+template <class T1>
+int petBackpack(T1& my);
+template <class T1>
+int petStore(T1& my);
+template <class T1>
+int mypropBackpack(T1& my);
+template <class T1>
+int againstChooseMap1(T1 &my);
+template <class T1>
+int againstChooseMap2(T1 &my);
+template <class T1>
+int againstChooseMap3(T1 &my);
+
+template <class T1, class T2>
 int against(T1 &my, T2 &other);
-template <typename T1>
+
+template <class T1>
 void showInfo(T1& obj,int x,int y,string str="нч");
-template <typename T1,typename T2>
+
+template <class T1,class T2>
 void againstInfo(T1 &my,T2 &other ,int x, int y, int option = 0);
+
 #endif // !_OPERTION_H_

@@ -2,6 +2,7 @@
 #include "../inc/loadBackgroud.h"
 #include "../inc/mouse.h"
 #include "../inc/operation.h"
+
 using namespace std;
 struct resource res;
 int main()
@@ -32,7 +33,8 @@ again:
 					if (msg.message== WM_LBUTTONDOWN && inArea(msg.x, msg.y, 70, 110, 160, 190))
 					{
 						cout << "小火猴" << endl;
-						int ret = myOperation();
+						//SmallMonkey smallmonkey;
+						int ret = myOperation(1);
 						if (ret == 0)
 						{
 							goto again;
@@ -42,7 +44,8 @@ again:
 					if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 310, 110, 160, 190))
 					{
 						cout << "伊娃" << endl;
-						int ret = myOperation();
+						//Eva eva;
+						int ret = myOperation(2);
 						if (ret == 0)
 						{
 							goto again;
@@ -52,7 +55,8 @@ again:
 					if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 550, 110, 160, 190))
 					{
 						cout << "布布种子" << endl;
-						int ret =myOperation();
+						//BritneySeeds britneyseeds;
+						int ret =myOperation(3);
 						if (ret == 0)
 						{
 							goto again;

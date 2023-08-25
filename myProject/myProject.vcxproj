@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Equipment.cpp" />
     <ClCompile Include="..\src\loadBackgroud.cpp" />
     <ClCompile Include="..\src\mouse.cpp" />
     <ClCompile Include="..\src\operation.cpp" />
@@ -134,11 +135,15 @@
     <ClCompile Include="myProject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\inc\Equipment.h" />
     <ClInclude Include="..\inc\global.h" />
     <ClInclude Include="..\inc\loadBackgroud.h" />
     <ClInclude Include="..\inc\mouse.h" />
     <ClInclude Include="..\inc\operation.h" />
     <ClInclude Include="..\inc\pet.h" />
+    <ClInclude Include="..\src\Attack.hpp" />
+    <ClInclude Include="..\src\BritneySeeds.hpp" />
+    <ClInclude Include="..\src\Defensive.hpp" />
     <ClInclude Include="..\src\Eva.hpp" />
     <ClInclude Include="..\src\Pipi.hpp" />
     <ClInclude Include="..\src\Ray.hpp" />

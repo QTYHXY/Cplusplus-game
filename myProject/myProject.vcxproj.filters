@@ -13,8 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="源文件\Bean">
+    <Filter Include="源文件\elfBean">
       <UniqueIdentifier>{8e3e4f9d-0509-4e3c-9fe6-534c2b34eb18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\equipBean">
+      <UniqueIdentifier>{90a1d63f-7922-406e-a34c-b49bdab5fefc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,7 +34,10 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\src\pet.cpp">
-      <Filter>源文件\Bean</Filter>
+      <Filter>源文件\elfBean</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Equipment.cpp">
+      <Filter>源文件\equipBean</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,19 +57,31 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Pipi.hpp">
-      <Filter>源文件\Bean</Filter>
+      <Filter>源文件\elfBean</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Ray.hpp">
-      <Filter>源文件\Bean</Filter>
+      <Filter>源文件\elfBean</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SawShark.hpp">
-      <Filter>源文件\Bean</Filter>
+      <Filter>源文件\elfBean</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SmallMonkey.hpp">
-      <Filter>源文件\Bean</Filter>
+      <Filter>源文件\elfBean</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Eva.hpp">
-      <Filter>源文件\Bean</Filter>
+      <Filter>源文件\elfBean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\BritneySeeds.hpp">
+      <Filter>源文件\elfBean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\Equipment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Attack.hpp">
+      <Filter>源文件\equipBean</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Defensive.hpp">
+      <Filter>源文件\equipBean</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
