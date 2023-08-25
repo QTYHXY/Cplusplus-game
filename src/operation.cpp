@@ -161,16 +161,42 @@ int fairyHospital(T1& my)
 {
 	cleardevice();
 	putimage(0, 0, res.resourceBK + 7);
+
+	//我的名字
+	string tmpMyStr = my._name;
+	char* tmpMyChar = (char*)tmpMyStr.data();
+	//设置文字大小
+	settextstyle(30, 0, "微软雅黑");
+	//设置文字颜色
+	settextcolor(WHITE);
+	//设置背景模式
+	setbkmode(TRANSPARENT);
+	//显示字体
+	outtextxy(320, 120, "点击恢复生命值");
+
 	ExMessage msg = { 0 };
 	while (true)
 	{
 		peekmessage(&msg, EX_MOUSE);//获取消息
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 290, 85, 210, 170))
+		{
+			my._curHp = my._fullHp;
+			cout << my._name << "已恢复全部生命值" << endl;
+			char tmpStr[50];
+			memset(tmpStr, 0, sizeof(tmpStr));
+			Sleep(1000);
+			sprintf_s(tmpStr, "%s已恢复全部生命值", tmpMyChar);
+			outtextxy(290, 290, tmpStr);
+			outtextxy(320, 360, "两秒后自动退出");
+			Sleep(2000);
+			return 2;
+		}
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
 			cout << "退出" << endl;
 			return 2;
 		}
-		//cout << "fairyHospital  pos(" << msg.x << "," << msg.y << ")" << endl;
+		cout << "fairyHospital  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
 template <class T1>
@@ -482,7 +508,7 @@ int against(T1& my, T2& other)
 			int harmMe = other.firstSkill(my);
 			other._curHp -= harmOther;
 			my._curHp -= harmMe;
-			if (other._curHp<=0)
+			if (other._curHp <= 0)
 			{
 				cout << other._name << "已死亡" << endl;
 				my._curExpValue += 10;
@@ -522,7 +548,7 @@ int against(T1& my, T2& other)
 			}
 			else if (my.isEmptyHp())
 			{
-				cout << other._name << "已死亡" << endl;
+				cout << my._name << "已死亡" << endl;
 				other._curExpValue += 5;
 				other.upGrade();
 				return 1;
@@ -553,7 +579,7 @@ int against(T1& my, T2& other)
 			}
 			else if (my.isEmptyHp())
 			{
-				cout << other._name << "已死亡" << endl;
+				cout << my._name << "已死亡" << endl;
 				other._curExpValue += 5;
 				other.upGrade();
 				return 1;
@@ -584,7 +610,7 @@ int against(T1& my, T2& other)
 			}
 			else if (my.isEmptyHp())
 			{
-				cout << other._name << "已死亡" << endl;
+				cout << my._name << "已死亡" << endl;
 				other._curExpValue += 5;
 				other.upGrade();
 				return 1;

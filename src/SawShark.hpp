@@ -9,15 +9,15 @@ public:
 	SawShark()
 	{
 		this->_name = "Ð¡öèÓã";
-		this->_fullHp = 20;
+		this->_fullHp = 50;
 		this->_curHp = this->_fullHp;
-		this->_aggressivity = 10;
-		this->_defense = 5;
+		this->_aggressivity = 15;
+		this->_defense = 10;
 		this->_fullMp = 15;
 		this->_curMp = this->_fullMp;
 		this->_fullExpValue = 20;
 		this->_curExpValue = 0;
-		this->_grade = 1;
+		this->_grade = 5;
 		this->_speed = 7;
 	}
 	void upGrade();
