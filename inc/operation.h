@@ -16,6 +16,8 @@ void propBackpack();
 int againstChoose();
 template <typename T1, typename T2>
 int against(T1 &my, T2 &other);
-template <typename T1, typename T2>
-void showInfo(T1& my, T2& other);
+template <typename T1>
+void showInfo(T1& obj,int x,int y,string str="нч");
+template <typename T1,typename T2>
+void againstInfo(T1 &my,T2 &other ,int x, int y, int option = 0);
 #endif // !_OPERTION_H_

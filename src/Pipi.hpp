@@ -14,7 +14,7 @@ public:
 		this->_name = "ƤƤ";
 		this->_fullHp = 12;
 		this->_curHp = this->_fullHp;
-		this->_aggressivity = 5;
+		this->_aggressivity = 9;
 		this->_defense = 8;
 		this->_fullMp = 10;
 		this->_curMp = this->_fullMp;

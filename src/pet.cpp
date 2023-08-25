@@ -110,7 +110,7 @@ void Pokemon::showAll()
 
 int Pokemon::isEmptyHp()
 {
-	if (this->_curHp == 0)
+	if (this->_curHp <= 0)
 	{
 		cout << this->_name << "已经战死" << endl;
 		return 1;
@@ -122,7 +122,7 @@ int Pokemon::isEmptyHp()
 }
 int Pokemon::isEmptyMp()
 {
-	if (this->_curMp == 0)
+	if (this->_curMp <= 0)
 	{
 		cout << this->_name << "已经没有魔力值" << endl;
 		return 1;
