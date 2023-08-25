@@ -51,10 +51,10 @@ void Ray::upGrade()
 		this->_curExpValue -= this->_fullExpValue;
 		this->_fullExpValue *= 1.2;
 	}
-	else if (this->_grade >= 100)
-	{
-		cout << "已经满级，无法升级" << endl;
-	}
+	//else if (this->_grade >= 100)
+	//{
+	//	cout << "已经满级，无法升级" << endl;
+	//}
 }
 template <class T1>
 int Ray::firstSkill(const T1& other)
@@ -69,7 +69,7 @@ int Ray::firstSkill(const T1& other)
 template <class T1>
 int Ray::SecondSkill(const T1& other)
 {
-	if (this->_grade < 4)
+	if (this->_grade > 4)
 	{
 		cout << "4级开启" << endl;
 		return 0;
@@ -80,7 +80,7 @@ int Ray::SecondSkill(const T1& other)
 template <class T1>
 int Ray::ThirdSkill(const T1& other)
 {
-	if (this->_grade < 8)
+	if (this->_grade > 8)
 	{
 		cout << "8级开启" << endl;
 		return 0;
@@ -91,7 +91,7 @@ int Ray::ThirdSkill(const T1& other)
 template <class T1>
 int Ray::fourthSkill(const T1& other)
 {
-	if (this->_grade < 12)
+	if (this->_grade > 12)
 	{
 		cout << "12级开启" << endl;
 		return 0;

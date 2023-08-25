@@ -69,30 +69,30 @@ int Eva::firstSkill(const T1& other)
 template <class T1>
 int Eva::SecondSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-	//{
-		//return -1;
-	//}
+	if (this->_grade < 4)
+	{
+		return 0;
+	}
 	cout << "伊娃使用了二技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
 template <class T1>
 int Eva::ThirdSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-	//{
-		//return -1;
-	//}
+	if (this->_grade < 4)
+	{
+		return 0;
+	}
 	cout << "伊娃使用了三技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
 template <class T1>
 int Eva::fourthSkill(const T1& other)
 {
-	//if (this->_grade < 4)
-	//{
-		//return -1;
-	//}
+	if (this->_grade < 4)
+	{
+		return 0;
+	}
 	cout << "伊娃使用了四技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }

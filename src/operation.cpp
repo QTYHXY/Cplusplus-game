@@ -448,15 +448,28 @@ int against(T1& my, T2& other)
 	{
 		other._curHp = other._fullHp;
 	}
-	if (my._curHp <= 0)
-	{
-		//cout <<"生命值已空，无法参加战斗" << endl;
-		my._curHp = my._fullHp;
-	}
 	cleardevice();
 	putimage(0, 0, &res.against);
 	showInfo(my, 10, 100);
 	showInfo(other, 670, 10);
+	if (my._curHp <= 0)
+	{
+		cout << "生命值已空，无法参加战斗" << endl;
+		//我的名字
+		string tmpMyStr = my._name;
+		char* tmpMyChar = (char*)tmpMyStr.data();
+		char tmpStr[50];
+		memset(tmpStr, 0, sizeof(tmpStr));
+		sprintf_s(tmpStr, "%s的生命值已空", tmpMyChar);
+		outtextxy(300, 100, tmpStr);
+		sprintf_s(tmpStr, "%s无法参加战斗", tmpMyChar);
+		outtextxy(300, 115, tmpStr);
+		outtextxy(300, 130, " 两秒后自动退出");
+		Sleep(2000);
+		return 1;
+	}
+
+
 	ExMessage msg = { 0 };
 	while (true)
 	{
@@ -465,21 +478,20 @@ int against(T1& my, T2& other)
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 35, 360, 145, 70))
 		{
 			msg.message = WM_LBUTTONUP;
-			//cout << "使用一技能" << endl;
 			int harmOther = my.firstSkill(other);
 			int harmMe = other.firstSkill(my);
 			other._curHp -= harmOther;
 			my._curHp -= harmMe;
-			if (other.isEmptyHp())
+			if (other._curHp<=0)
 			{
-				cout << other._name << "也死亡" << endl;
-				my._curExpValue += 5;
+				cout << other._name << "已死亡" << endl;
+				my._curExpValue += 10;
 				my.upGrade();
 				return 1;
 			}
-			else if (my.isEmptyHp())
+			else if (my._curHp <= 0)
 			{
-				cout << other._name << "也死亡" << endl;
+				cout << my._name << "已死亡" << endl;
 				other._curExpValue += 5;
 				other.upGrade();
 				return 1;
@@ -497,21 +509,20 @@ int against(T1& my, T2& other)
 		{
 
 			msg.message = WM_LBUTTONUP;
-			//cout << "使用一技能" << endl;
 			int harmOther = my.SecondSkill(other);
 			int harmMe = other.SecondSkill(my);
 			other._curHp -= harmOther;
 			my._curHp -= harmMe;
 			if (other.isEmptyHp())
 			{
-				cout << other._name << "也死亡" << endl;
+				cout << other._name << "已死亡" << endl;
 				my._curExpValue += 5;
 				my.upGrade();
 				return 1;
 			}
 			else if (my.isEmptyHp())
 			{
-				cout << other._name << "也死亡" << endl;
+				cout << other._name << "已死亡" << endl;
 				other._curExpValue += 5;
 				other.upGrade();
 				return 1;
@@ -535,14 +546,14 @@ int against(T1& my, T2& other)
 			my._curHp -= harmMe;
 			if (other.isEmptyHp())
 			{
-				cout << other._name << "也死亡" << endl;
+				cout << other._name << "已死亡" << endl;
 				my._curExpValue += 5;
 				my.upGrade();
 				return 1;
 			}
 			else if (my.isEmptyHp())
 			{
-				cout << other._name << "也死亡" << endl;
+				cout << other._name << "已死亡" << endl;
 				other._curExpValue += 5;
 				other.upGrade();
 				return 1;
@@ -566,14 +577,14 @@ int against(T1& my, T2& other)
 			my._curHp -= harmMe;
 			if (other.isEmptyHp())
 			{
-				cout << other._name << "也死亡" << endl;
+				cout << other._name << "已死亡" << endl;
 				my._curExpValue += 5;
 				my.upGrade();
 				return 1;
 			}
 			else if (my.isEmptyHp())
 			{
-				cout << other._name << "也死亡" << endl;
+				cout << other._name << "已死亡" << endl;
 				other._curExpValue += 5;
 				other.upGrade();
 				return 1;
@@ -656,7 +667,7 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		sprintf_s(tmpStr, "%s对%s使用了一技能", tmpOtherChar, tmpMyChar);
 		outtextxy(x, y + 15, tmpStr);
 	}
-	else if (option == 2)
+	else if (option == 2 && my._grade >= 4)
 	{
 		memset(tmpStr, 0, sizeof(tmpStr));
 		sprintf_s(tmpStr, "%s对%s使用了二技能", tmpMyChar, tmpOtherChar);
@@ -664,7 +675,7 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		sprintf_s(tmpStr, "%s对%s使用了二技能", tmpOtherChar, tmpMyChar);
 		outtextxy(x, y + 15, tmpStr);
 	}
-	else if (option == 3)
+	else if (option == 3 && my._grade >= 8)
 	{
 		memset(tmpStr, 0, sizeof(tmpStr));
 		sprintf_s(tmpStr, "%s对%s使用了三技能", tmpMyChar, tmpOtherChar);
@@ -672,12 +683,20 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		sprintf_s(tmpStr, "%s对%s使用了三技能", tmpOtherChar, tmpMyChar);
 		outtextxy(x, y + 15, tmpStr);
 	}
-	else if (option == 4)
+	else if (option == 4 && my._grade >= 12)
 	{
 		memset(tmpStr, 0, sizeof(tmpStr));
 		sprintf_s(tmpStr, "%s对%s使用了四技能", tmpMyChar, tmpOtherChar);
 		outtextxy(x, y, tmpStr);
 		sprintf_s(tmpStr, "%s对%s使用了四技能", tmpOtherChar, tmpMyChar);
+		outtextxy(x, y + 15, tmpStr);
+	}
+	else
+	{
+		memset(tmpStr, 0, sizeof(tmpStr));
+		sprintf_s(tmpStr, "%s等级未到达要求", tmpMyChar);
+		outtextxy(x, y, tmpStr);
+		sprintf_s(tmpStr, "%s无法使用该技能", tmpMyChar);
 		outtextxy(x, y + 15, tmpStr);
 	}
 }

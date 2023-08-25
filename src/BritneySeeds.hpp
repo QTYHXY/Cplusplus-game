@@ -63,7 +63,7 @@ void BritneySeeds::upGrade()
 template <class T1>
 int BritneySeeds::firstSkill(const T1& other)
 {
-	cout << "布布种子使用了爪" << endl;
+	cout << "布布种子使用了一技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
 template <class T1>
