@@ -214,6 +214,7 @@ int against(T1& my, T2& other)
 		//二技能位置
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 230, 360, 145, 70))
 		{
+
 			msg.message = WM_LBUTTONUP;
 			//cout << "使用一技能" << endl;
 			int harmOther = my.SecondSkill(other);
