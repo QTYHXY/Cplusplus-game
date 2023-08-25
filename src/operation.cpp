@@ -1,14 +1,21 @@
+//头文件
+#include <windows.h>
+#include <iostream>
 #include "../inc/operation.h"
 #include "../inc/mouse.h"
-#include "Pipi.hpp"
-#include "SmallMonkey.hpp"
-#include "Eva.hpp"
-#include "BritneySeeds.hpp"
-#include <iostream>
-#include <windows.h>
 extern "C" {
 #include <string.h>
 }
+//敌对生物
+#include "Pipi.hpp"
+#include "Ray.hpp"
+#include "SawShark.hpp"
+//我方生物
+#include "SmallMonkey.hpp"
+#include "Eva.hpp"
+#include "BritneySeeds.hpp"
+
+
 using namespace std;
 
 extern struct resource res;
@@ -191,16 +198,20 @@ mapchoose:
 		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 325, 115, 150, 150))
 		{
 			cout << "海洋星" << endl;
-			cleardevice();
-			putimage(0, 0, res.map + 1);
-			//againstChoose(my);
+			int ret = againstChooseMap2(my);
+			if (ret == 2)
+			{
+				goto mapchoose;
+			}
 		}
 		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 590, 115, 160, 150))
 		{
 			cout << "雷神星" << endl;
-			cleardevice();
-			putimage(0, 0, res.map + 2);
-			//againstChoose(my);
+			int ret = againstChooseMap3(my);
+			if (ret == 2)
+			{
+				goto mapchoose;
+			}
 		}
 		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
@@ -262,7 +273,7 @@ int mypropBackpack(T1& my)
 	}
 }
 
-
+//云霄星
 template <class T1>
 int againstChooseMap1(T1& my)
 {
@@ -283,30 +294,90 @@ choose:
 				goto choose;
 			}
 		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 480, 45, 125, 110))
+		{
+			cout << "开始对战" << endl;
+			Pipi pipi;
+			if (against(my, pipi))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 120, 270, 125, 110))
+		{
+			cout << "开始对战" << endl;
+			Pipi pipi;
+			if (against(my, pipi))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 480, 280, 125, 110))
+		{
+			cout << "开始对战" << endl;
+			Pipi pipi;
+			if (against(my, pipi))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
 			cout << "退出" << endl;
 			return 2;
 		}
-		//cout << "againstChoose  pos(" << msg.x << "," << msg.y << ")" << endl;
+		//cout << "againstChooseMap1  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
-
+//海洋星
 template <class T1>
 int againstChooseMap2(T1& my)
 {
 choose:
 	cleardevice();
-	putimage(0, 0, res.map + 3);
+	putimage(0, 0, res.map + 1);
 	ExMessage msg = { 0 };
 	while (true)
 	{
 		peekmessage(&msg, EX_MOUSE);//获取消息 
-		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 140, 110, 125, 110))
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 190, 100, 120, 110))
 		{
 			cout << "开始对战" << endl;
-			Pipi pipi;
-			if (against(smallmonkey, pipi))
+			SawShark sawshark;
+			if (against(my, sawshark))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 550, 80, 120, 110))
+		{
+			cout << "开始对战" << endl;
+			SawShark sawshark;
+			if (against(my, sawshark))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 80, 305, 120, 110))
+		{
+			cout << "开始对战" << endl;
+			SawShark sawshark;
+			if (against(my, sawshark))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 580, 320, 120, 110))
+		{
+			cout << "开始对战" << endl;
+			SawShark sawshark;
+			if (against(my, sawshark))
 			{
 				cout << "战斗结束" << endl;
 				goto choose;
@@ -317,25 +388,45 @@ choose:
 			cout << "退出" << endl;
 			return 2;
 		}
-		//cout << "againstChoose  pos(" << msg.x << "," << msg.y << ")" << endl;
+		//cout << "againstChooseMap2  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
-
+//雷神星
 template <class T1>
 int againstChooseMap3(T1& my)
 {
 choose:
 	cleardevice();
-	putimage(0, 0, res.map + 3);
+	putimage(0, 0, res.map + 2);
 	ExMessage msg = { 0 };
 	while (true)
 	{
 		peekmessage(&msg, EX_MOUSE);//获取消息 
-		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 140, 110, 125, 110))
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 345, 60, 120, 120))
 		{
 			cout << "开始对战" << endl;
-			Pipi pipi;
-			if (against(smallmonkey, pipi))
+			Ray ray;
+			if (against(my, ray))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 165, 275, 120, 120))
+		{
+			cout << "开始对战" << endl;
+			Ray ray;
+			if (against(my, ray))
+			{
+				cout << "战斗结束" << endl;
+				goto choose;
+			}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 530, 295, 120, 120))
+		{
+			cout << "开始对战" << endl;
+			Ray ray;
+			if (against(my, ray))
 			{
 				cout << "战斗结束" << endl;
 				goto choose;
@@ -346,9 +437,10 @@ choose:
 			cout << "退出" << endl;
 			return 2;
 		}
-		//cout << "againstChoose  pos(" << msg.x << "," << msg.y << ")" << endl;
+		//cout << "againstChooseMap3  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
+//开始战斗
 template <typename T1, typename T2>
 int against(T1& my, T2& other)
 {
@@ -364,7 +456,7 @@ int against(T1& my, T2& other)
 	cleardevice();
 	putimage(0, 0, &res.against);
 	showInfo(my, 10, 100);
-	showInfo(other, 690, 10);
+	showInfo(other, 670, 10);
 	ExMessage msg = { 0 };
 	while (true)
 	{
@@ -397,7 +489,7 @@ int against(T1& my, T2& other)
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 1);
 			showInfo(my, 10, 100);
-			showInfo(other, 690, 10);
+			showInfo(other, 670, 10);
 			EndBatchDraw();
 		}
 		//二技能位置
@@ -429,7 +521,7 @@ int against(T1& my, T2& other)
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 2);
 			showInfo(my, 10, 100);
-			showInfo(other, 690, 10);
+			showInfo(other, 670, 10);
 			EndBatchDraw();
 		}
 		//三技能位置
@@ -460,7 +552,7 @@ int against(T1& my, T2& other)
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 3);
 			showInfo(my, 10, 100);
-			showInfo(other, 690, 10);
+			showInfo(other, 670, 10);
 			EndBatchDraw();
 		}
 		//四技能位置
@@ -491,7 +583,7 @@ int against(T1& my, T2& other)
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 4);
 			showInfo(my, 10, 100);
-			showInfo(other, 690, 10);
+			showInfo(other, 670, 10);
 			EndBatchDraw();
 		}
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
