@@ -18,7 +18,6 @@ extern "C" {
 #include "Eva.hpp"
 #include "BritneySeeds.hpp"
 
-
 using namespace std;
 
 extern struct resource res;
@@ -27,6 +26,7 @@ SmallMonkey smallmonkey;
 Eva eva;
 BritneySeeds britneyseeds;
 
+//主页面操作
 int myOperation(int num)
 {
 map:
@@ -170,6 +170,7 @@ map:
 		//cout << "operation pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
+//医院
 template <class T1>
 int fairyHospital(T1& my)
 {
@@ -213,6 +214,7 @@ int fairyHospital(T1& my)
 		//cout << "fairyHospital  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
+//地图探索
 template <class T1>
 int mapExploration(T1& my)
 {
@@ -260,6 +262,7 @@ mapchoose:
 		//cout << "map  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
+//宠物背包
 template <class T1>
 int petBackpack(T1& my)
 {
@@ -318,14 +321,19 @@ int petBackpack(T1& my)
 		//cout << "petBackpack  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
+//宠物商店
 template <class T1>
 int petStore(T1& my)
 {
 	cleardevice();
 	putimage(0, 0, res.resourceBK + 4);
+
+
 	ExMessage msg = { 0 };
 	while (true)
 	{
+		myDrawImgSingle(120, 170, res.tool + 0);
+		myDrawImgSingle(540, 170, res.tool + 1);
 		peekmessage(&msg, EX_MOUSE);//获取消息
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 90, 150, 130, 165))
 		{
@@ -339,8 +347,9 @@ int petStore(T1& my)
 			setbkmode(TRANSPARENT);
 			//显示字体
 			outtextxy(320, 120, "大宝剑购买成功");
+			myDrawImgSingle(120, 170, res.tool + 0);
 			my._isAttack = 1;
-			Sleep(2000);
+			Sleep(1000);
 			cleardevice();
 			putimage(0, 0, res.resourceBK + 4);
 		}
@@ -356,8 +365,10 @@ int petStore(T1& my)
 			setbkmode(TRANSPARENT);
 			//显示字体
 			outtextxy(320, 120, "大盾牌购买成功");
+			myDrawImgSingle(540, 170, res.tool + 1);
+
 			my._isDefensive = 1;
-			Sleep(2000);
+			Sleep(1000);
 			cleardevice();
 			putimage(0, 0, res.resourceBK + 4);
 		}
@@ -369,6 +380,7 @@ int petStore(T1& my)
 		//cout << "petStore  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
+//工具背包
 template <class T1>
 int mypropBackpack(T1& my)
 {
@@ -384,16 +396,20 @@ int mypropBackpack(T1& my)
 
 	if (my._isAttack == 1 && my._isDefensive == 0)
 	{
-		outtextxy(160, 100, "大宝剑");
+		//outtextxy(160, 100, "大宝剑");
+		myDrawImgSingle(160, 100, res.tool + 0);
 	}
 	else if (my._isAttack == 0 && my._isDefensive == 1)
 	{
-		outtextxy(160, 100, "大盾牌");
+		//outtextxy(160, 100, "大盾牌");
+		myDrawImgSingle(160, 100, res.tool + 1);
 	}
 	else if (my._isAttack == 1 && my._isDefensive == 1)
 	{
-		outtextxy(160, 100, "大宝剑");
-		outtextxy(490, 100, "大盾牌");
+		//outtextxy(160, 100, "大宝剑");
+		//outtextxy(490, 100, "大盾牌");
+		myDrawImgSingle(160, 100, res.tool + 0);
+		myDrawImgSingle(490, 100, res.tool + 1);
 	}
 	while (true)
 	{
@@ -670,6 +686,7 @@ int against(T1& my, T2& other)
 	putimage(0, 0, &res.against);
 	showInfo(my, 150, 10);
 	showInfo(other, 670, 10);
+	
 	if (my._name == "小火猴")
 	{
 		myDrawImgSingle(145, 175, res.role + 6);
@@ -682,6 +699,7 @@ int against(T1& my, T2& other)
 	{
 		myDrawImgSingle(145, 175, res.role + 0);
 	}
+
 	if (other._name == "雷伊")
 	{
 		myDrawImgSingle(555, 80, res.role + 15);
@@ -694,7 +712,6 @@ int against(T1& my, T2& other)
 	{
 		myDrawImgSingle(550, 80, res.role + 9);
 	}
-
 
 	if (my._isAttack == 1 && my._isDefensive == 1)
 	{
@@ -937,8 +954,8 @@ int against(T1& my, T2& other)
 		cout << "against  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
-template <typename T1>
 //双方信息显示
+template <typename T1>
 void showInfo(T1& obj, int x, int y, string str)
 {
 	//设置文字大小
@@ -1048,6 +1065,45 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		outtextxy(x, y, tmpStr);
 		sprintf_s(tmpStr, "%s无法使用该技能", tmpMyChar);
 		outtextxy(x, y + 15, tmpStr);
+	}
+
+	if (my._name == "小火猴")
+	{
+		myDrawImgSingle(145, 175, res.role + 6);
+	}
+	else if (my._name == "伊娃")
+	{
+		myDrawImgSingle(145, 175, res.role + 3);
+	}
+	else if (my._name == "布布种子")
+	{
+		myDrawImgSingle(145, 175, res.role + 0);
+	}
+
+	if (other._name == "雷伊")
+	{
+		myDrawImgSingle(555, 80, res.role + 15);
+	}
+	else if (other._name == "皮皮")
+	{
+		myDrawImgSingle(550, 80, res.role + 12);
+	}
+	else if (other._name == "小鲨鱼")
+	{
+		myDrawImgSingle(550, 80, res.role + 9);
+	}
+	if (my._isAttack == 1 && my._isDefensive == 1)
+	{
+		myDrawImgSingle(0, 160, res.tool + 0);
+		myDrawImgSingle(0, 250, res.tool + 1);
+	}
+	else if (my._isDefensive == 1)
+	{
+		myDrawImgSingle(0, 250, res.tool + 1);
+	}
+	else if (my._isAttack == 1)
+	{
+		myDrawImgSingle(0, 160, res.tool + 0);
 	}
 }
 //存档
