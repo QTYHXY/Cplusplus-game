@@ -7,8 +7,10 @@
 struct resource {
 	IMAGE resourceBK[10];
 	IMAGE describe[10];
-	IMAGE map[5];
+	IMAGE map[10];
 	IMAGE against;
+	IMAGE role[30];
+	IMAGE tool[10];
 };
 
 #endif

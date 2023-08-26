@@ -5,9 +5,7 @@
 #include <easyx.h>
 #include "../inc/loadBackgroud.h"
 #include "../inc/pet.h"
-//#include "../src/Pipi.hpp"
-//#include "../src/SmallMonkey.hpp"
-
+//#include "../src/tool.hpp"
 int myOperation(int num);
 
 template <class T1>

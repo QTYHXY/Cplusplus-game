@@ -149,6 +149,7 @@
     <ClInclude Include="..\src\Ray.hpp" />
     <ClInclude Include="..\src\SawShark.hpp" />
     <ClInclude Include="..\src\SmallMonkey.hpp" />
+    <ClInclude Include="..\src\tool.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\assert\bbzz1.png" />

@@ -2,6 +2,7 @@
 #include "../inc/loadBackgroud.h"
 #include "../inc/mouse.h"
 #include "../inc/operation.h"
+//#include "../src/tool.hpp"
 
 using namespace std;
 struct resource res;
@@ -25,6 +26,9 @@ again:
 				msg.y = 0;
 				cleardevice();
 				putimage(0, 0, res.resourceBK + 1);
+				//drawImg(120, 150, res.role + 0);
+				//drawImg(350, 150, res.role + 3);
+				//drawImg(590, 150,res.role + 6);
 				while(true)
 				{
 					peekmessage(&msg, EX_MOUSE);//获取消息 鼠标

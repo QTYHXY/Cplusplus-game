@@ -5,6 +5,7 @@
 #include <string>
 #include "../inc/operation.h"
 #include "../inc/mouse.h"
+#include "../src/tool.hpp"
 extern "C" {
 #include <string.h>
 }
@@ -21,9 +22,11 @@ extern "C" {
 using namespace std;
 
 extern struct resource res;
+
 SmallMonkey smallmonkey;
 Eva eva;
 BritneySeeds britneyseeds;
+
 int myOperation(int num)
 {
 map:
@@ -456,10 +459,23 @@ int againstChooseMap1(T1& my)
 {
 choose:
 	cleardevice();
-	putimage(0, 0, res.map + 3);
+	//putimage(0, 0, res.map + 3);
+	putimage(0, 0, res.map + 4);
+	//设置文字大小
+	settextstyle(30, 0, "微软雅黑");
+	//设置文字颜色
+	settextcolor(BLACK);
+	//设置背景模式
+	setbkmode(TRANSPARENT);
+	//显示字体
+	outtextxy(20, 20, "返回");
 	ExMessage msg = { 0 };
 	while (true)
 	{
+		myDrawImgSingle(140, 110, res.role + 12);
+		myDrawImgSingle(480, 45, res.role + 12);
+		myDrawImgSingle(120, 270, res.role + 12);
+		myDrawImgSingle(480, 280, res.role + 12);
 		peekmessage(&msg, EX_MOUSE);//获取消息 
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 140, 110, 125, 110))
 		{
@@ -515,10 +531,23 @@ int againstChooseMap2(T1& my)
 {
 choose:
 	cleardevice();
-	putimage(0, 0, res.map + 1);
+	//putimage(0, 0, res.map + 1);
+	putimage(0, 0, res.map + 5);
+	//设置文字大小
+	settextstyle(30, 0, "微软雅黑");
+	//设置文字颜色
+	settextcolor(WHITE);
+	//设置背景模式
+	setbkmode(TRANSPARENT);
+	//显示字体
+	outtextxy(20, 20, "返回");
 	ExMessage msg = { 0 };
 	while (true)
 	{
+		myDrawImgSingle(190, 110, res.role + 9);
+		myDrawImgSingle(550, 80, res.role + 9);
+		myDrawImgSingle(80, 305, res.role + 9);
+		myDrawImgSingle(580, 320, res.role + 9);
 		peekmessage(&msg, EX_MOUSE);//获取消息 
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 190, 100, 120, 110))
 		{
@@ -574,10 +603,22 @@ int againstChooseMap3(T1& my)
 {
 choose:
 	cleardevice();
-	putimage(0, 0, res.map + 2);
+	//putimage(0, 0, res.map + 2);
+	putimage(0, 0, res.map + 6);
+	//设置文字大小
+	settextstyle(30, 0, "微软雅黑");
+	//设置文字颜色
+	settextcolor(WHITE);
+	//设置背景模式
+	setbkmode(TRANSPARENT);
+	//显示字体
+	outtextxy(20, 20, "返回");
 	ExMessage msg = { 0 };
 	while (true)
 	{
+		myDrawImgSingle(345, 60, res.role + 15);
+		myDrawImgSingle(165, 275, res.role + 15);
+		myDrawImgSingle(530, 295, res.role + 15);
 		peekmessage(&msg, EX_MOUSE);//获取消息 
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 345, 60, 120, 120))
 		{
@@ -629,6 +670,47 @@ int against(T1& my, T2& other)
 	putimage(0, 0, &res.against);
 	showInfo(my, 150, 10);
 	showInfo(other, 670, 10);
+	if (my._name == "小火猴")
+	{
+		myDrawImgSingle(145, 175, res.role + 6);
+	}
+	else if (my._name == "伊娃")
+	{
+		myDrawImgSingle(145, 175, res.role + 3);
+	}
+	else if (my._name == "布布种子")
+	{
+		myDrawImgSingle(145, 175, res.role + 0);
+	}
+	if (other._name == "雷伊")
+	{
+		myDrawImgSingle(555, 80, res.role + 15);
+	}
+	else if (other._name == "皮皮")
+	{
+		myDrawImgSingle(550, 80, res.role + 12);
+	}
+	else if (other._name == "小鲨鱼")
+	{
+		myDrawImgSingle(550, 80, res.role + 9);
+	}
+
+
+	if (my._isAttack == 1 && my._isDefensive == 1)
+	{
+		myDrawImgSingle(0, 160, res.tool +0);
+		myDrawImgSingle(0, 250, res.tool + 1);
+	}
+	else if (my._isDefensive == 1)
+	{
+		myDrawImgSingle(0, 250, res.tool + 1);
+	}
+	else if(my._isAttack == 1)
+	{
+		myDrawImgSingle(0, 160, res.tool + 0);
+	}
+
+
 	if (my._curHp <= 0)
 	{
 		cout << "生命值已空，无法参加战斗" << endl;
@@ -852,7 +934,7 @@ int against(T1& my, T2& other)
 			cout << "退出" << endl;
 			return 1;
 		}
-		//cout << "against  pos(" << msg.x << "," << msg.y << ")" << endl;
+		cout << "against  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
 template <typename T1>
@@ -1159,7 +1241,7 @@ int readData()
 			else if (i == 10)
 			{
 				cout << "grade = " << line << endl;
-				if (num == 1)
+				if (num == 1)                     
 				{
 					smallmonkey.setGrade(atoi(line.c_str()));
 				}
@@ -1231,4 +1313,4 @@ int readData()
 	}
 	myOperation(num);
 	return 0;
-}
+}                                        
