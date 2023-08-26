@@ -3,8 +3,10 @@
 #define _EVA_H_
 #include "../inc/pet.h"
 #include "../inc/Equipment.h"
+#include "../src/Attack.hpp"
+#include "../src/Defensive.hpp"
 
-class Eva :public Pokemon,public Equipment 
+class Eva :public Pokemon,public Sword,public Shield
 {
 public:
 	Eva()

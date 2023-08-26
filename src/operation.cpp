@@ -655,14 +655,75 @@ int against(T1& my, T2& other)
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 160, 80, 80))
 		{
 			msg.message = WM_LBUTTONUP;
+			if (my._isAttack == 0) 
+			{
+				cout << "没有武器攻击" << endl;
+			}
+			else
+			{
+				int harmOther = my.firstSwordSkill(my);
+				other._curHp -= harmOther;
+				if (other.isEmptyHp())
+				{
+					cout << other._name << "已死亡" << endl;
+					my._curExpValue += 5;
+					my.upGrade();
+					return 1;
+				}
+				else if (my.isEmptyHp())
+				{
+					cout << my._name << "已死亡" << endl;
+					other._curExpValue += 5;
+					other.upGrade();
+					return 1;
+				}
+				BeginBatchDraw();
+				cleardevice();
+				putimage(0, 0, &res.against);
+				againstInfo(my, other, 300, 100, 5);
+				showInfo(my, 150, 10);
+				showInfo(other, 670, 10);
+				EndBatchDraw();
+			}
 			cout << "武器1" << endl;
 		}
 		//下武器位置
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 250, 80, 80))
 		{
 			msg.message = WM_LBUTTONUP;
+			if (my._isDefensive == 0)
+			{
+				cout << "没有防具防御" << endl;
+			}
+			else
+			{
+				int upDefensive = my.firstShieldSkill(my);
+				my._defense += upDefensive;
+				if (other.isEmptyHp())
+				{
+					cout << other._name << "已死亡" << endl;
+					my._curExpValue += 5;
+					my.upGrade();
+					return 1;
+				}
+				else if (my.isEmptyHp())
+				{
+					cout << my._name << "已死亡" << endl;
+					other._curExpValue += 5;
+					other.upGrade();
+					return 1;
+				}
+				BeginBatchDraw();
+				cleardevice();
+				putimage(0, 0, &res.against);
+				againstInfo(my, other, 300, 100, 6);
+				showInfo(my, 150, 10);
+				showInfo(other, 670, 10);
+				EndBatchDraw();
+			}
 			cout << "武器2" << endl;
 		}
+		//退出
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
 			cout << "退出" << endl;
@@ -724,7 +785,12 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 	//其他名字
 	string tmpOtherStr = other._name;
 	char* tmpOtherChar = (char*)tmpOtherStr.data();
-
+	//武器名字
+	string tmpToolAStr = my.Sword::_eName;
+	char* tmpToolAChar = (char*)tmpToolAStr.data();
+	//防具名字
+	string tmpToolDStr = my.Shield::_eName;
+	char* tmpToolDChar = (char*)tmpToolDStr.data();
 	if (option == 1)
 	{
 		memset(tmpStr, 0, sizeof(tmpStr));
@@ -756,6 +822,18 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		outtextxy(x, y, tmpStr);
 		sprintf_s(tmpStr, "%s对%s使用了四技能", tmpOtherChar, tmpMyChar);
 		outtextxy(x, y + 15, tmpStr);
+	}
+	else if (option == 5)
+	{
+		memset(tmpStr, 0, sizeof(tmpStr));
+		sprintf_s(tmpStr, "%s使用%s对%s造成伤害", tmpMyChar, tmpToolAChar,tmpOtherChar);
+		outtextxy(x, y, tmpStr);
+	}
+	else if (option == 6)
+	{
+		memset(tmpStr, 0, sizeof(tmpStr));
+		sprintf_s(tmpStr, "%s使用%s提升了防御力", tmpMyChar, tmpToolDChar);
+		outtextxy(x, y, tmpStr);
 	}
 	else
 	{

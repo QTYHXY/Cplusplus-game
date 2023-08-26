@@ -2,10 +2,12 @@
 #define _SMALLMONKEY_HPP_
 #include "../inc/pet.h"
 #include "../inc/Equipment.h"
+#include "../src/Attack.hpp"
+#include "../src/Defensive.hpp"
 #include <iostream>
 
 //小火猴-》生命值：20   攻击力：7  防御力：7 魔法值：10 升级要的经验：20 速度：4  等级：1
-class SmallMonkey : public Pokemon,public Equipment
+class SmallMonkey : public Pokemon,public Sword,public Shield
 {
 private:
 
@@ -102,10 +104,6 @@ int SmallMonkey::fourthSkill(const T1& other)
 	cout << "小火猴使用四技能" << endl;
 	return (this->_aggressivity * 1.5) / (other._defense * 0.5);
 }
-
-
-
-
 
 
 #endif

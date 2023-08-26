@@ -109,7 +109,7 @@ bool Pokemon::getIsAttack()
 }
 bool Pokemon::getIsDenfensive()
 {
-	return getIsDenfensive;
+	return _isDefensive;
 }
 
 

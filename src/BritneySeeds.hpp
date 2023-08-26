@@ -2,10 +2,12 @@
 #define _BRITNEYSEEDS_HPP_
 #include "../inc/pet.h"
 #include "../inc/Equipment.h"
+#include "../src/Attack.hpp"
+#include "../src/Defensive.hpp"
 #include <iostream>
 
 //布布种子-》生命值：20   攻击力：7  防御力：7 魔法值：10 升级要的经验：20 速度：4  等级：1
-class BritneySeeds : public Pokemon,public Equipment
+class BritneySeeds : public Pokemon,public Sword,public Shield
 {
 private:
 
