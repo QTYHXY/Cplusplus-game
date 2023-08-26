@@ -68,6 +68,7 @@ again:
 			else if (inArea(msg.x, msg.y, 330, 190, 115, 25))
 			{
 				cout << "读取存档" << endl;
+				readData();
 			}
 			else if (inArea(msg.x, msg.y, 330, 270, 115, 25))
 			{

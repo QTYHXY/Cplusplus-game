@@ -34,6 +34,20 @@ public:
 	int ThirdSkill(const T1& other);
 	template <class T1>
 	int fourthSkill(const T1& other);
+
+	void setName(string name);
+	void setFullHp(int num);
+	void setCurHp(int num);//当前血量
+	void setAggressivity(int num);//攻击力
+	void setDefense(int num);//防御力
+	void setFullMp(int num);//满魔力
+	void setCurMp(int num);//当前魔力
+	void setFullExpValue(int num);//升级要的经验值
+	void setCurExpvalue(int num);//当前经验值
+	void setGrade(int num);//等级
+	void setSpeed(int num);//速度
+	void setIsAttack(int num);//武器
+	void setIsDenfensive(int num);//防具
 };
 
 
@@ -102,4 +116,58 @@ int Eva::fourthSkill(const T1& other)
 	return (this->_aggressivity * 1.5) / (other._defense * 1.2);
 }
 
+
+void Eva::setName(string name)
+{
+	this->_name = name;
+}
+void Eva::setFullHp(int num)
+{
+	this->_fullHp = num;
+}
+void Eva::setCurHp(int num)
+{
+	this->_curHp = num;
+}
+void Eva::setAggressivity(int num)
+{
+	this->_aggressivity = num;
+}
+void Eva::setDefense(int num)
+{
+	this->_defense = num;
+}
+void Eva::setFullMp(int num)
+{
+	this->_fullMp = num;
+}
+void Eva::setCurMp(int num)
+{
+	this->_curMp = num;
+}
+void Eva::setFullExpValue(int num)
+{
+	this->_fullExpValue = num;
+}
+void Eva::setCurExpvalue(int num)
+{
+	this->_curExpValue = num;
+}
+
+void Eva::setGrade(int num)
+{
+	this->_grade = num;
+}
+void Eva::setSpeed(int num)
+{
+	this->_speed = num;
+}
+void Eva::setIsAttack(int num)
+{
+	this->_isAttack = num;
+}
+void Eva::setIsDenfensive(int num)
+{
+	this->_isDefensive = num;
+}
 #endif // !_EVA_H_

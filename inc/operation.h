@@ -36,4 +36,8 @@ void showInfo(T1& obj,int x,int y,string str="нч");
 template <class T1,class T2>
 void againstInfo(T1 &my,T2 &other ,int x, int y, int option = 0);
 
+template <class T1>
+void archive(T1 &my,int num);
+
+int readData();
 #endif // !_OPERTION_H_

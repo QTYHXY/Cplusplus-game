@@ -1,6 +1,8 @@
 //头文件
 #include <windows.h>
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "../inc/operation.h"
 #include "../inc/mouse.h"
 extern "C" {
@@ -144,7 +146,19 @@ map:
 			else if (inArea(msg.x, msg.y, 560, 280, 115, 130))
 			{
 				cleardevice();
-				putimage(0, 0, res.resourceBK + 8);
+				//putimage(0, 0, res.resourceBK + 8);
+				if (num == 1)
+				{
+					archive(smallmonkey, 1);
+				}
+				else if (num == 2)
+				{
+					archive(eva, 2);
+				}
+				else if (num == 3)
+				{
+					archive(britneyseeds, 3);
+				}
 				cout << "退出" << endl;
 				return 0;
 			}
@@ -193,11 +207,11 @@ int fairyHospital(T1& my)
 			cout << "退出" << endl;
 			return 2;
 		}
-		cout << "fairyHospital  pos(" << msg.x << "," << msg.y << ")" << endl;
+		//cout << "fairyHospital  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
 template <class T1>
-int mapExploration(T1 &my)
+int mapExploration(T1& my)
 {
 mapchoose:
 	ExMessage msg = { 0 };
@@ -249,9 +263,50 @@ int petBackpack(T1& my)
 	cleardevice();
 	putimage(0, 0, res.resourceBK + 5);
 	ExMessage msg = { 0 };
+	//我的名字
+	string tmpMyStr = my._name;
+	char* tmpMyChar = (char*)tmpMyStr.data();
+	//设置文字大小
+	settextstyle(48, 0, "微软雅黑");
+	//设置文字颜色
+	settextcolor(RED);
+	//设置背景模式
+	setbkmode(TRANSPARENT);
+	//显示字体
+	outtextxy(150, 120, tmpMyChar);
 	while (true)
 	{
 		peekmessage(&msg, EX_MOUSE);//获取消息
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 140, 85, 140, 140))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "物品1" << endl;
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 505, 80, 140, 140))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "物品2" << endl;
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 45, 285, 140, 140))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "物品3" << endl;
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 235, 285, 140, 140))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "物品4" << endl;
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 435, 285, 140, 140))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "物品5" << endl;
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 640, 285, 140, 140))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "物品6" << endl;
+		}
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
 			cout << "退出" << endl;
@@ -281,6 +336,7 @@ int petStore(T1& my)
 			setbkmode(TRANSPARENT);
 			//显示字体
 			outtextxy(320, 120, "大宝剑购买成功");
+			my._isAttack = 1;
 			Sleep(2000);
 			cleardevice();
 			putimage(0, 0, res.resourceBK + 4);
@@ -297,6 +353,7 @@ int petStore(T1& my)
 			setbkmode(TRANSPARENT);
 			//显示字体
 			outtextxy(320, 120, "大盾牌购买成功");
+			my._isDefensive = 1;
 			Sleep(2000);
 			cleardevice();
 			putimage(0, 0, res.resourceBK + 4);
@@ -315,18 +372,84 @@ int mypropBackpack(T1& my)
 	cleardevice();
 	putimage(0, 0, res.resourceBK + 3);
 	ExMessage msg = { 0 };
+	//设置文字大小
+	settextstyle(25, 0, "微软雅黑");
+	//设置文字颜色
+	settextcolor(WHITE);
+	//设置背景模式
+	setbkmode(TRANSPARENT);
+
+	if (my._isAttack == 1 && my._isDefensive == 0)
+	{
+		outtextxy(160, 100, "大宝剑");
+	}
+	else if (my._isAttack == 0 && my._isDefensive == 1)
+	{
+		outtextxy(160, 100, "大盾牌");
+	}
+	else if (my._isAttack == 1 && my._isDefensive == 1)
+	{
+		outtextxy(160, 100, "大宝剑");
+		outtextxy(490, 100, "大盾牌");
+	}
 	while (true)
 	{
 		peekmessage(&msg, EX_MOUSE);//获取消息
-		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 145, 80, 140, 130))
 		{
+			msg.message = WM_LBUTTONUP;
+			cout << "道具1" << endl;
+			//if (my._isAttack == 1&&my._isDefensive ==0)
+			//{
+			//	outtextxy(160, 100, "大宝剑");
+			//}
+			//else if (my._isAttack == 0 && my._isDefensive == 1)
+			//{
+			//	outtextxy(160, 100, "大盾牌");
+			//}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 490, 75, 140, 130))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "道具2" << endl;
+			//if (my._isAttack == 1 && my._isDefensive == 1)
+			//{
+			//	outtextxy(490, 100, "大盾牌");
+			//}
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 20, 285, 140, 130))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "道具3" << endl;
+
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 220, 285, 140, 130))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "道具4" << endl;
+
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 450, 285, 140, 130))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "道具5" << endl;
+
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 655, 285, 140, 130))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "道具6" << endl;
+
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
+		{
+			msg.message = WM_LBUTTONUP;
 			cout << "退出" << endl;
 			return 2;
 		}
 		//cout << "mypropBackpack  pos(" << msg.x << "," << msg.y << ")" << endl;
 	}
 }
-
 //云霄星
 template <class T1>
 int againstChooseMap1(T1& my)
@@ -655,7 +778,7 @@ int against(T1& my, T2& other)
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 160, 80, 80))
 		{
 			msg.message = WM_LBUTTONUP;
-			if (my._isAttack == 0) 
+			if (my._isAttack == 0)
 			{
 				cout << "没有武器攻击" << endl;
 			}
@@ -733,6 +856,7 @@ int against(T1& my, T2& other)
 	}
 }
 template <typename T1>
+//双方信息显示
 void showInfo(T1& obj, int x, int y, string str)
 {
 	//设置文字大小
@@ -774,7 +898,7 @@ void showInfo(T1& obj, int x, int y, string str)
 	sprintf_s(petName, "经验值  :  %d / %d", obj._curExpValue, obj._fullExpValue);
 	outtextxy(x, y + 90, petName);
 }
-
+//对战操作显示
 template <typename T1, typename T2>
 void againstInfo(T1& my, T2& other, int x, int y, int option)
 {
@@ -826,7 +950,7 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 	else if (option == 5)
 	{
 		memset(tmpStr, 0, sizeof(tmpStr));
-		sprintf_s(tmpStr, "%s使用%s对%s造成伤害", tmpMyChar, tmpToolAChar,tmpOtherChar);
+		sprintf_s(tmpStr, "%s使用%s对%s造成伤害", tmpMyChar, tmpToolAChar, tmpOtherChar);
 		outtextxy(x, y, tmpStr);
 	}
 	else if (option == 6)
@@ -843,4 +967,268 @@ void againstInfo(T1& my, T2& other, int x, int y, int option)
 		sprintf_s(tmpStr, "%s无法使用该技能", tmpMyChar);
 		outtextxy(x, y + 15, tmpStr);
 	}
+}
+//存档
+template <class T1>
+void archive(T1& my, int num)
+{
+	ofstream outputFile("../info/info.txt");
+	if (outputFile.is_open()) {
+		outputFile << num << endl;
+		outputFile << my._name << endl;
+		outputFile << my._fullHp << endl;
+		outputFile << my._curHp << endl;
+		outputFile << my._aggressivity << endl;
+		outputFile << my._defense << endl;
+		outputFile << my._fullMp << endl;
+		outputFile << my._curMp << endl;
+		outputFile << my._fullExpValue << endl;
+		outputFile << my._curExpValue << endl;
+		outputFile << my._grade << endl;
+		outputFile << my._speed << endl;
+		outputFile << my._isAttack << endl;
+		outputFile << my._isDefensive << endl;
+		outputFile.close();
+	}
+	else {
+		// 文件打开失败，进行错误处理
+		std::cout << "无法打开文件进行写入操作。" << std::endl;
+	}
+}
+//读取存档
+int readData()
+{
+	ifstream inputFile("../info/info.txt");
+	int num = 0;
+	if (inputFile.is_open()) {
+		string line;
+		int i=0;
+		
+		// 逐行读取文件内容
+		while (getline(inputFile, line)) {
+			//cout << line << endl;
+			if (i == 0)
+			{
+				cout << "num = " << line << endl;
+				num = atoi(line.c_str());
+			}
+			else if (i == 1)
+			{
+				cout << "name = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setName(line);
+				}
+				else if (num == 2)
+				{
+					eva.setName(line);
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setName(line);
+				}
+			}
+			else if (i == 2)
+			{
+				cout << "fullHp = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setFullHp(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setFullHp(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setFullHp(atoi(line.c_str()));
+				}
+			}
+			else if (i == 3)
+			{
+				cout << "curHp = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setCurHp(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setCurHp(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setCurHp(atoi(line.c_str()));
+				}
+			}
+			else if (i == 4)
+			{
+				cout << "aggressivity = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setAggressivity(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setAggressivity(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setAggressivity(atoi(line.c_str()));
+				}
+			}
+			else if (i == 5)
+			{
+				cout << "defense = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setDefense(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setDefense(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setDefense(atoi(line.c_str()));
+				}
+			}
+			else if (i == 6)
+			{
+				cout << "fullMp = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setFullMp(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setFullMp(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setFullMp(atoi(line.c_str()));
+				}
+			}
+			else if (i == 7)
+			{
+				cout << "curMp = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setCurMp(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setCurMp(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setCurMp(atoi(line.c_str()));
+				}
+			}
+			else if (i == 8)
+			{
+				cout << "fullExpValue = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setFullExpValue(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setFullExpValue(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setFullExpValue(atoi(line.c_str()));
+				}
+			}
+			else if (i == 9)
+			{
+				cout << "curExpValue = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setCurExpvalue(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setCurExpvalue(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setCurExpvalue(atoi(line.c_str()));
+				}
+			}
+			else if (i == 10)
+			{
+				cout << "grade = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setGrade(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setGrade(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setGrade(atoi(line.c_str()));
+				}
+			}
+			else if (i == 11)
+			{
+				cout << "speed = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setSpeed(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setSpeed(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setSpeed(atoi(line.c_str()));
+				}
+			}
+			else if (i == 12)
+			{
+				cout << "isAttack = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setIsAttack(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setIsAttack(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{ 
+					britneyseeds.setIsAttack(atoi(line.c_str()));
+				}
+			}
+			else if (i == 13)
+			{
+				cout << "isDefensive = " << line << endl;
+				if (num == 1)
+				{
+					smallmonkey.setIsDenfensive(atoi(line.c_str()));
+				}
+				else if (num == 2)
+				{
+					eva.setIsDenfensive(atoi(line.c_str()));
+				}
+				else if (num == 3)
+				{
+					britneyseeds.setIsDenfensive(atoi(line.c_str()));
+				}
+			}
+			i++;
+		}
+		//cout << "i = " << i << endl;
+		inputFile.close();
+	}
+	else {
+		// 文件打开失败，进行错误处理
+		cout << "无法打开文件进行读取操作。" << endl;
+	}
+	myOperation(num);
+	return 0;
 }

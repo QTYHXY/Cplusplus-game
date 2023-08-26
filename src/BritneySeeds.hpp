@@ -7,7 +7,7 @@
 #include <iostream>
 
 //布布种子-》生命值：20   攻击力：7  防御力：7 魔法值：10 升级要的经验：20 速度：4  等级：1
-class BritneySeeds : public Pokemon,public Sword,public Shield
+class BritneySeeds : public Pokemon, public Sword, public Shield
 {
 private:
 
@@ -37,6 +37,20 @@ public:
 	int ThirdSkill(const T1& other);
 	template <class T1>
 	int fourthSkill(const T1& other);
+
+	void setName(string name);
+	void setFullHp(int num);
+	void setCurHp(int num);//当前血量
+	void setAggressivity(int num);//攻击力
+	void setDefense(int num);//防御力
+	void setFullMp(int num);//满魔力
+	void setCurMp(int num);//当前魔力
+	void setFullExpValue(int num);//升级要的经验值
+	void setCurExpvalue(int num);//当前经验值
+	void setGrade(int num);//等级
+	void setSpeed(int num);//速度
+	void setIsAttack(int num);//武器
+	void setIsDenfensive(int num);//防具
 };
 
 
@@ -106,7 +120,59 @@ int BritneySeeds::fourthSkill(const T1& other)
 }
 
 
+void BritneySeeds::setName(string name)
+{
+	this->_name = name;
+}
+void BritneySeeds::setFullHp(int num)
+{
+	this->_fullHp = num;
+}
+void BritneySeeds::setCurHp(int num)
+{
+	this->_curHp = num;
+}
+void BritneySeeds::setAggressivity(int num)
+{
+	this->_aggressivity = num;
+}
+void BritneySeeds::setDefense(int num)
+{
+	this->_defense = num;
+}
+void BritneySeeds::setFullMp(int num)
+{
+	this->_fullMp = num;
+}
+void BritneySeeds::setCurMp(int num)
+{
+	this->_curMp = num;
+}
+void BritneySeeds::setFullExpValue(int num)
+{
+	this->_fullExpValue = num;
+}
+void BritneySeeds::setCurExpvalue(int num)
+{
+	this->_curExpValue = num;
+}
 
+void BritneySeeds::setGrade(int num)
+{
+	this->_grade = num;
+}
+void BritneySeeds::setSpeed(int num)
+{
+	this->_speed = num;
+}
+void BritneySeeds::setIsAttack(int num)
+{
+	this->_isAttack = num;
+}
+void BritneySeeds::setIsDenfensive(int num)
+{
+	this->_isDefensive = num;
+}
 
 
 

@@ -20,8 +20,8 @@ public:
 	int _curExpValue;//当前经验值
 	int _grade;//等级
 	int _speed;//速度
-	bool _isAttack;//是否装备武器
-	bool _isDefensive;//是否装备防具
+	int _isAttack;//是否装备武器
+	int _isDefensive;//是否装备防具
 
 public:
 	//构造方法
@@ -29,33 +29,33 @@ public:
 	Pokemon(string name, int fullHp, int curHp, int aggressivity, int defense, int fullMp, int curMp, int fullExpValue, int curExpValue, int grade,int speed,bool isAttack,bool isDefensive);
 	virtual ~Pokemon();
 	//set方法
-	void setName(string name);
-	void setFullHp(int num);
-	void setCurHp(int num);//当前血量
-	void setAggressivity(int num);//攻击力
-	void setDefense(int num);//防御力
-	void setFullMp(int num);//满魔力
-	void setCurMp(int num);//当前魔力
-	void setFullExpValue(int num);//升级要的经验值
-	void setCurExpvalue(int num);//当前经验值
-	void setGrade(int num);//等级
-	void setSpeed(int num);//速度
-	void setIsAttack(int num);//武器
-	void setIsDenfensive(int num);//防具
+	virtual void setName(string name);
+	virtual void setFullHp(int num);
+	virtual void setCurHp(int num);//当前血量
+	virtual void setAggressivity(int num);//攻击力
+	virtual void setDefense(int num);//防御力
+	virtual void setFullMp(int num);//满魔力
+	virtual void setCurMp(int num);//当前魔力
+	virtual void setFullExpValue(int num);//升级要的经验值
+	virtual void setCurExpvalue(int num);//当前经验值
+	virtual void setGrade(int num);//等级
+	virtual void setSpeed(int num);//速度
+	virtual void setIsAttack(int num);//武器
+	virtual void setIsDenfensive(int num);//防具
 	//get方法
-	string getName();
-	int getFullHp();
-	int getCurHp();//当前血量
-	int getAggressivity();//攻击力
-	int getDefense();//防御力
-	int getFullMp();//满魔力
-	int getCurMp();//当前魔力
-	int getFullExpValue();//升级要的经验值
-	int getCurExpvalue();//当前经验值
-	int getGrade();//等级
-	int getSpeed();//速度
-	bool getIsAttack();//武器
-	bool getIsDenfensive();//防具
+	virtual string getName();
+	virtual int getFullHp();
+	virtual int getCurHp();//当前血量
+	virtual int getAggressivity();//攻击力
+	virtual int getDefense();//防御力
+	virtual int getFullMp();//满魔力
+	virtual int getCurMp();//当前魔力
+	virtual int getFullExpValue();//升级要的经验值
+	virtual int getCurExpvalue();//当前经验值
+	virtual int getGrade();//等级
+	virtual int getSpeed();//速度
+	virtual int getIsAttack();//武器
+	virtual int getIsDenfensive();//防具
 
 	//show
 	void showAll();

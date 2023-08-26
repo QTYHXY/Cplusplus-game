@@ -54,6 +54,10 @@ void Pokemon::setGrade(int num)
 {
 	this->_grade = num;
 }
+void Pokemon::setSpeed(int num)
+{
+	this->_speed = num;
+}
 void Pokemon::setIsAttack(int num)
 {
 	this->_isAttack = num;
@@ -103,11 +107,15 @@ int Pokemon::getGrade()//µÈ¼¶
 {
 	return _grade;
 }
-bool Pokemon::getIsAttack()
+int Pokemon::getSpeed()
+{
+	return _speed;
+}
+int Pokemon::getIsAttack()
 {
 	return _isAttack;
 }
-bool Pokemon::getIsDenfensive()
+int Pokemon::getIsDenfensive()
 {
 	return _isDefensive;
 }
