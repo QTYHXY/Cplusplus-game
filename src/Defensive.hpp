@@ -10,7 +10,7 @@ class Shield : public Equipment
 public:
 	Shield()
 	{
-		this->_name = "´ó¶ÜÅÆ";
+		this->_eName = "´ó¶ÜÅÆ";
 		this->_upHp = 10;
 		this->_upMp = 5;
 		this->_upAggresivity = 3;
@@ -19,19 +19,19 @@ public:
 	}
 
 	template <class T1>
-	int firstSkill(const T1& my);
+	int firstShieldSkill(const T1& my);
 	template <class T1>
-	int SecondSkill(const T1& my);
+	int SecondShieldSkill(const T1& my);
 };
 
 //·ÀÓùÌáÉı
 template <class T1>
-int Shield::firstSkill(const T1& my)
+int Shield::firstShieldSkill(const T1& my)
 {
 	return my._defense * 1.5;
 }
 template <class T1>
-int Shield::SecondSkill(const T1& my)
+int Shield::SecondShieldSkill(const T1& my)
 {
 	return my._defense * 3;
 }

@@ -20,11 +20,13 @@ public:
 	int _curExpValue;//当前经验值
 	int _grade;//等级
 	int _speed;//速度
+	bool _isAttack;//是否装备武器
+	bool _isDefensive;//是否装备防具
 
 public:
 	//构造方法
 	Pokemon();
-	Pokemon(string name, int fullHp, int curHp, int aggressivity, int defense, int fullMp, int curMp, int fullExpValue, int curExpValue, int grade,int speed);
+	Pokemon(string name, int fullHp, int curHp, int aggressivity, int defense, int fullMp, int curMp, int fullExpValue, int curExpValue, int grade,int speed,bool isAttack,bool isDefensive);
 	virtual ~Pokemon();
 	//set方法
 	void setName(string name);
@@ -38,6 +40,8 @@ public:
 	void setCurExpvalue(int num);//当前经验值
 	void setGrade(int num);//等级
 	void setSpeed(int num);//速度
+	void setIsAttack(int num);//武器
+	void setIsDenfensive(int num);//防具
 	//get方法
 	string getName();
 	int getFullHp();
@@ -50,6 +54,8 @@ public:
 	int getCurExpvalue();//当前经验值
 	int getGrade();//等级
 	int getSpeed();//速度
+	bool getIsAttack();//武器
+	bool getIsDenfensive();//防具
 
 	//show
 	void showAll();

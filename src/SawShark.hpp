@@ -19,6 +19,8 @@ public:
 		this->_curExpValue = 0;
 		this->_grade = 5;
 		this->_speed = 7;
+		this->_isAttack = 0;
+		this->_isDefensive = 0;
 	}
 	void upGrade();
 	template <class T1>

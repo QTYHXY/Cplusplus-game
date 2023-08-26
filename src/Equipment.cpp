@@ -6,7 +6,7 @@ Equipment::Equipment()
 }
 Equipment::Equipment(string name, int upHp, int upMp, int upAggresivity, int upDefense, int upSpeed)
 {
-	this->_name = name;
+	this->_eName = name;
 	this->_upHp = upHp;
 	this->_upMp = upMp;
 	this->_upAggresivity = upAggresivity;
@@ -20,7 +20,7 @@ Equipment::~Equipment()
 //set方法
 void Equipment::setName(string name)
 {
-	this->_name = name;
+	this->_eName = name;
 }
 void Equipment::setUpHp(int num)
 {
@@ -45,7 +45,7 @@ void Equipment::setUpSpeed(int num)
 //get方法
 string Equipment::getName(string name)
 {
-	return this->_name;
+	return this->_eName;
 }
 int Equipment::getUpHp()
 {

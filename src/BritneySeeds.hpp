@@ -1,10 +1,11 @@
 #ifndef _BRITNEYSEEDS_HPP_
 #define _BRITNEYSEEDS_HPP_
 #include "../inc/pet.h"
+#include "../inc/Equipment.h"
 #include <iostream>
 
 //布布种子-》生命值：20   攻击力：7  防御力：7 魔法值：10 升级要的经验：20 速度：4  等级：1
-class BritneySeeds : public Pokemon
+class BritneySeeds : public Pokemon,public Equipment
 {
 private:
 
@@ -22,7 +23,8 @@ public:
 		this->_curExpValue = 0;
 		this->_grade = 1;
 		this->_speed = 4;
-
+		this->_isAttack = 0;
+		this->_isDefensive = 0;
 	}
 	void upGrade();
 	template <class T1>

@@ -7,7 +7,6 @@ using namespace std;
 struct resource res;
 int main()
 {
-	
 	initgraph(800, 480, EX_SHOWCONSOLE| EX_NOCLOSE| EX_NOMINIMIZE| EX_DBLCLKS);
 	loadingBK(&res);
 again:
@@ -63,7 +62,7 @@ again:
 						}
 						break;
 					}
-					cout << "鼠标左键按下2pos(" << msg.x << "," << msg.y << ")" << endl;
+					//cout << "角色选择 pos(" << msg.x << "," << msg.y << ")" << endl;
 				}
 			}
 			else if (inArea(msg.x, msg.y, 330, 190, 115, 25))
@@ -75,7 +74,7 @@ again:
 				cout << "退出程序" << endl;
 				exit(0);
 			}
-			cout << "鼠标左键按下1pos(" << msg.x << "," << msg.y << ")" << endl;
+			//cout << "开始菜单 pos(" << msg.x << "," << msg.y << ")" << endl;
 			break;
 		default:
 			break;

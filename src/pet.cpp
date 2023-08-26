@@ -4,8 +4,8 @@ Pokemon::Pokemon()
 {
 
 }
-Pokemon::Pokemon(string name, int fullHp, int curHp, int aggressivity, int defense, int fullMp, int curMp, int fullExpValue, int curExpValue, int grade, int speed)
-	:_name(name), _fullHp(fullHp), _curHp(curHp), _aggressivity(aggressivity), _defense(defense), _fullMp(fullMp), _curMp(curMp), _fullExpValue(fullExpValue), _curExpValue(curExpValue), _grade(grade), _speed(speed)
+Pokemon::Pokemon(string name, int fullHp, int curHp, int aggressivity, int defense, int fullMp, int curMp, int fullExpValue, int curExpValue, int grade, int speed,bool isAttack, bool isDefensive)
+	:_name(name), _fullHp(fullHp), _curHp(curHp), _aggressivity(aggressivity), _defense(defense), _fullMp(fullMp), _curMp(curMp), _fullExpValue(fullExpValue), _curExpValue(curExpValue), _grade(grade), _speed(speed),_isAttack(isAttack),_isDefensive(isDefensive)
 {
 
 }
@@ -54,7 +54,14 @@ void Pokemon::setGrade(int num)
 {
 	this->_grade = num;
 }
-
+void Pokemon::setIsAttack(int num)
+{
+	this->_isAttack = num;
+}
+void Pokemon::setIsDenfensive(int num)
+{
+	this->_isDefensive = num;
+}
 
 string Pokemon::getName()
 {
@@ -96,6 +103,16 @@ int Pokemon::getGrade()//µÈ¼¶
 {
 	return _grade;
 }
+bool Pokemon::getIsAttack()
+{
+	return _isAttack;
+}
+bool Pokemon::getIsDenfensive()
+{
+	return getIsDenfensive;
+}
+
+
 
 void Pokemon::showAll()
 {

@@ -6,7 +6,7 @@ using namespace std;
 class Equipment
 {
 public:
-	string _name;//名字
+	string _eName;//名字
 	int _upHp;//提高血量
 	int _upMp;//提高蓝量
 	int _upAggresivity;//提高攻击力

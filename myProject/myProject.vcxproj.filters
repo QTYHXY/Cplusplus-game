@@ -19,6 +19,12 @@
     <Filter Include="源文件\equipBean">
       <UniqueIdentifier>{90a1d63f-7922-406e-a34c-b49bdab5fefc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="资源文件\assert">
+      <UniqueIdentifier>{fa668d23-cfea-4c34-93f0-325727abc789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\background">
+      <UniqueIdentifier>{c10dbdbb-9cc9-4b00-af11-363a0115d7ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myProject.cpp">
@@ -83,5 +89,121 @@
     <ClInclude Include="..\src\Defensive.hpp">
       <Filter>源文件\equipBean</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assert\bbzz1.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\bbzz2.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\bbzz3.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\gy.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\hero_blowup_n4.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\kxs1.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\ls1.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\ls2.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\ls3.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\pp1.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\pp2.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\pp3.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\xhh1.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\xhh2.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\xhh3.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\yb1.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\yb2.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\assert\yb3.png">
+      <Filter>资源文件\assert</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\against.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\bk1.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\bk2.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\describe1.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\describe2.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\describe3.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\describe4.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\describe5.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\describe6.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\exit.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\fairyHospital.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\map.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\map1.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\map2.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\map3.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\mapExploration.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\petBackpack.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\petStore.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\propBackpack.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
+    <Image Include="..\images\backgroud\start.png">
+      <Filter>资源文件\background</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -150,6 +150,46 @@
     <ClInclude Include="..\src\SawShark.hpp" />
     <ClInclude Include="..\src\SmallMonkey.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\assert\bbzz1.png" />
+    <Image Include="..\assert\bbzz2.png" />
+    <Image Include="..\assert\bbzz3.png" />
+    <Image Include="..\assert\gy.png" />
+    <Image Include="..\assert\hero_blowup_n4.png" />
+    <Image Include="..\assert\kxs1.png" />
+    <Image Include="..\assert\ls1.png" />
+    <Image Include="..\assert\ls2.png" />
+    <Image Include="..\assert\ls3.png" />
+    <Image Include="..\assert\pp1.png" />
+    <Image Include="..\assert\pp2.png" />
+    <Image Include="..\assert\pp3.png" />
+    <Image Include="..\assert\xhh1.png" />
+    <Image Include="..\assert\xhh2.png" />
+    <Image Include="..\assert\xhh3.png" />
+    <Image Include="..\assert\yb1.png" />
+    <Image Include="..\assert\yb2.png" />
+    <Image Include="..\assert\yb3.png" />
+    <Image Include="..\images\backgroud\against.png" />
+    <Image Include="..\images\backgroud\bk1.png" />
+    <Image Include="..\images\backgroud\bk2.png" />
+    <Image Include="..\images\backgroud\describe1.png" />
+    <Image Include="..\images\backgroud\describe2.png" />
+    <Image Include="..\images\backgroud\describe3.png" />
+    <Image Include="..\images\backgroud\describe4.png" />
+    <Image Include="..\images\backgroud\describe5.png" />
+    <Image Include="..\images\backgroud\describe6.png" />
+    <Image Include="..\images\backgroud\exit.png" />
+    <Image Include="..\images\backgroud\fairyHospital.png" />
+    <Image Include="..\images\backgroud\map.png" />
+    <Image Include="..\images\backgroud\map1.png" />
+    <Image Include="..\images\backgroud\map2.png" />
+    <Image Include="..\images\backgroud\map3.png" />
+    <Image Include="..\images\backgroud\mapExploration.png" />
+    <Image Include="..\images\backgroud\petBackpack.png" />
+    <Image Include="..\images\backgroud\petStore.png" />
+    <Image Include="..\images\backgroud\propBackpack.png" />
+    <Image Include="..\images\backgroud\start.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

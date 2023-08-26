@@ -10,7 +10,7 @@ class Sword : public Equipment
 public:
 	Sword()
 	{
-		this->_name = "´ó±¦½£";
+		this->_eName = "´ó±¦½£";
 		this->_upHp = 10;
 		this->_upMp = 5;
 		this->_upAggresivity = 10;
@@ -19,19 +19,19 @@ public:
 	}
 
 	template <class T1>
-	int firstSkill(const T1& my);
+	int firstSwordSkill(const T1& my);
 	template <class T1>
-	int SecondSkill(const T1& my);
+	int SecondSwordSkill(const T1& my);
 };
 
 
 template <class T1>
-int Sword::firstSkill(const T1& my)
+int Sword::firstSwordSkill(const T1& my)
 {
 	return my._aggressivity * 1.5;
 }
 template <class T1>
-int Sword::SecondSkill(const T1& my)
+int Sword::SecondSwordSkill(const T1& my)
 {
 	return my._aggressivity * 3;
 }

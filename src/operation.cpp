@@ -22,7 +22,6 @@ extern struct resource res;
 SmallMonkey smallmonkey;
 Eva eva;
 BritneySeeds britneyseeds;
-
 int myOperation(int num)
 {
 map:
@@ -60,6 +59,7 @@ map:
 			}
 			else if (inArea(msg.x, msg.y, 320, 95, 115, 130))
 			{
+				cout << "打开道具背包" << endl;
 				int ret;
 				if (num == 1)
 				{
@@ -77,11 +77,10 @@ map:
 				{
 					goto map;
 				}
-				cout << "打开道具背包" << endl;
 			}
 			else if (inArea(msg.x, msg.y, 560, 95, 115, 130))
 			{
-
+				cout << "打开宠物商店" << endl;
 				int ret;
 				if (num == 1)
 				{
@@ -99,10 +98,10 @@ map:
 				{
 					goto map;
 				}
-				cout << "打开宠物商店" << endl;
 			}
 			else if (inArea(msg.x, msg.y, 90, 280, 115, 130))
 			{
+				cout << "地图探索" << endl;
 				int ret;
 				if (num == 1)
 				{
@@ -120,11 +119,10 @@ map:
 				{
 					goto map;
 				}
-				cout << "地图探索" << endl;
 			}
 			else if (inArea(msg.x, msg.y, 320, 280, 115, 130))
 			{
-
+				cout << "精灵医院" << endl;
 				int ret;
 				if (num == 1)
 				{
@@ -142,7 +140,6 @@ map:
 				{
 					goto map;
 				}
-				cout << "精灵医院" << endl;
 			}
 			else if (inArea(msg.x, msg.y, 560, 280, 115, 130))
 			{
@@ -200,7 +197,7 @@ int fairyHospital(T1& my)
 	}
 }
 template <class T1>
-int mapExploration(T1& my)
+int mapExploration(T1 &my)
 {
 mapchoose:
 	ExMessage msg = { 0 };
@@ -219,7 +216,6 @@ mapchoose:
 			{
 				goto mapchoose;
 			}
-
 		}
 		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 325, 115, 150, 150))
 		{
@@ -273,6 +269,38 @@ int petStore(T1& my)
 	while (true)
 	{
 		peekmessage(&msg, EX_MOUSE);//获取消息
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 90, 150, 130, 165))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "大宝剑" << endl;
+			//设置文字大小
+			settextstyle(30, 0, "微软雅黑");
+			//设置文字颜色
+			settextcolor(WHITE);
+			//设置背景模式
+			setbkmode(TRANSPARENT);
+			//显示字体
+			outtextxy(320, 120, "大宝剑购买成功");
+			Sleep(2000);
+			cleardevice();
+			putimage(0, 0, res.resourceBK + 4);
+		}
+		else if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 520, 140, 130, 165))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "大盾牌" << endl;
+			//设置文字大小
+			settextstyle(30, 0, "微软雅黑");
+			//设置文字颜色
+			settextcolor(WHITE);
+			//设置背景模式
+			setbkmode(TRANSPARENT);
+			//显示字体
+			outtextxy(320, 120, "大盾牌购买成功");
+			Sleep(2000);
+			cleardevice();
+			putimage(0, 0, res.resourceBK + 4);
+		}
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
 			cout << "退出" << endl;
@@ -476,7 +504,7 @@ int against(T1& my, T2& other)
 	}
 	cleardevice();
 	putimage(0, 0, &res.against);
-	showInfo(my, 10, 100);
+	showInfo(my, 150, 10);
 	showInfo(other, 670, 10);
 	if (my._curHp <= 0)
 	{
@@ -526,7 +554,7 @@ int against(T1& my, T2& other)
 			cleardevice();
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 1);
-			showInfo(my, 10, 100);
+			showInfo(my, 150, 10);
 			showInfo(other, 670, 10);
 			EndBatchDraw();
 		}
@@ -557,7 +585,7 @@ int against(T1& my, T2& other)
 			cleardevice();
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 2);
-			showInfo(my, 10, 100);
+			showInfo(my, 150, 10);
 			showInfo(other, 670, 10);
 			EndBatchDraw();
 		}
@@ -588,7 +616,7 @@ int against(T1& my, T2& other)
 			cleardevice();
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 3);
-			showInfo(my, 10, 100);
+			showInfo(my, 150, 10);
 			showInfo(other, 670, 10);
 			EndBatchDraw();
 		}
@@ -619,9 +647,21 @@ int against(T1& my, T2& other)
 			cleardevice();
 			putimage(0, 0, &res.against);
 			againstInfo(my, other, 300, 100, 4);
-			showInfo(my, 10, 100);
+			showInfo(my, 150, 10);
 			showInfo(other, 670, 10);
 			EndBatchDraw();
+		}
+		//上武器位置
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 160, 80, 80))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "武器1" << endl;
+		}
+		//下武器位置
+		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 250, 80, 80))
+		{
+			msg.message = WM_LBUTTONUP;
+			cout << "武器2" << endl;
 		}
 		if (msg.message == WM_LBUTTONDOWN && inArea(msg.x, msg.y, 0, 0, 95, 70))
 		{
